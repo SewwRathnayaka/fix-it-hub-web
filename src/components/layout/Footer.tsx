@@ -1,14 +1,15 @@
+
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-green-500 text-white">
+    <footer className="bg-[#14B22D] text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            {/* Logo image replacement */}
+            {/* LOGO IMAGE HOLDER */}
             <div className="mb-4">
               <img
                 src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
@@ -31,7 +32,7 @@ const Footer = () => {
               <span>123 Main Street, Anytown, USA</span>
             </div>
           </div>
-          
+
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
@@ -56,7 +57,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
+
           {/* Services */}
           <div>
             <h3 className="text-lg font-bold mb-4">Services</h3>
@@ -81,7 +82,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
+
           {/* Newsletter */}
           <div>
             <h3 className="text-lg font-bold mb-4">Subscribe</h3>
@@ -98,10 +99,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
+
         <div className="border-t border-green-400 mt-8 pt-8 text-center">
           <div className="flex justify-center mb-3">
-            {/* Footer logo again (small version) */}
+            {/* LOGO IMAGE HOLDER */}
             <img
               src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
               alt="FixFinder Logo"
@@ -117,3 +118,4 @@ const Footer = () => {
 };
 
 export default Footer;
+
