@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-green-500 text-white">
+    <footer className="bg-[#8E9196] text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -24,7 +24,6 @@ const Footer = () => {
               <span>123 Main Street, Anytown, USA</span>
             </div>
           </div>
-          
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
@@ -42,14 +41,13 @@ const Footer = () => {
                 <Link to="/contact" className="hover:underline">Contact Us</Link>
               </li>
               <li>
-                <Link to="/login" className="hover:underline">Login</Link>
+                <Link to="/select-role?action=login" className="hover:underline">Login</Link>
               </li>
               <li>
-                <Link to="/signup" className="hover:underline">Sign Up</Link>
+                <Link to="/select-role?action=signup" className="hover:underline">Sign Up</Link>
               </li>
             </ul>
           </div>
-          
           {/* Services */}
           <div>
             <h3 className="text-lg font-bold mb-4">Services</h3>
@@ -74,7 +72,6 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          
           {/* Newsletter */}
           <div>
             <h3 className="text-lg font-bold mb-4">Subscribe</h3>
@@ -91,13 +88,11 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        
-        <div className="border-t border-green-400 mt-8 pt-8 text-center">
+        <div className="border-t border-gray-300 mt-8 pt-8 text-center">
           <p>&copy; {new Date().getFullYear()} FixFinder. All rights reserved.</p>
         </div>
       </div>
     </footer>
   );
 };
-
 export default Footer;
