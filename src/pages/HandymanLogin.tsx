@@ -1,14 +1,10 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const HandymanLogin = () => {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-orange-50 to-green-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-r from-orange-50 to-green-50">
+      <div className="flex flex-1 flex-col items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h2 className="text-2xl font-bold text-center mb-2">Log in as Handyman</h2>
           <form>
@@ -50,7 +46,6 @@ const HandymanLogin = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -24,6 +23,14 @@ import ClientReviews from "./pages/client/ClientReviews";
 import ClientPaymentBilling from "./pages/client/ClientPaymentBilling";
 import ClientAccountSettings from "./pages/client/ClientAccountSettings";
 import HandymanDashboard from "./pages/handyman/HandymanDashboard";
+import HandymanSchedule from "./pages/handyman/HandymanSchedule";
+import HandymanJobs from "./pages/handyman/HandymanJobs";
+import HandymanClients from "./pages/handyman/HandymanClients";
+import HandymanSettings from "./pages/handyman/HandymanSettings";
+import HandymanProfile from "./pages/handyman/HandymanProfile";
+import HandymanNotifications from "./pages/handyman/HandymanNotifications";
+import HandymanAccount from "./pages/handyman/HandymanAccount";
+import HandymanBilling from "./pages/handyman/HandymanBilling";
 
 const queryClient = new QueryClient();
 
@@ -57,7 +64,15 @@ const App = () => (
           
           {/* Handyman Dashboard Routes */}
           <Route path="/handyman/dashboard" element={<HandymanDashboard />} />
-          
+          <Route path="/handyman/schedule" element={<HandymanSchedule />} />
+          <Route path="/handyman/jobs" element={<HandymanJobs />} />
+          <Route path="/handyman/clients" element={<HandymanClients />} />
+          <Route path="/handyman/settings" element={<HandymanSettings />} />
+          <Route path="/handyman/profile" element={<HandymanProfile />} />
+          <Route path="/handyman/notifications" element={<HandymanNotifications />} />
+          <Route path="/handyman/account" element={<HandymanAccount />} />
+          <Route path="/handyman/billing" element={<HandymanBilling />} />
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
