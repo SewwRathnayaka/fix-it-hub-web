@@ -1,4 +1,3 @@
-
 import React, { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -102,22 +101,22 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
             </SidebarGroup>
           </SidebarContent>
         </Sidebar>
-        {/* Main Section */}
         <main className="flex-1 flex flex-col min-h-screen bg-[#f5faf7]">
-          {/* Header */}
           <div className="w-full px-10 py-6 flex items-center justify-between border-b bg-white shadow-sm">
             <span className="text-3xl font-black tracking-tight flex items-center gap-2">
-              <img src="/lovable-uploads/f4918fca-02ef-492f-bc14-65286bdd2046.png" alt="logo" className="h-9" />
-              <span className="text-green-700">Fixfinder</span>
+              <img
+                src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+                alt="FixFinder Logo"
+                className="h-9 object-contain"
+                style={{ maxWidth: 140 }}
+              />
             </span>
             {/* Optionally, notification and profile icons */}
           </div>
-          {/* Page Title */}
           <div className="px-10 pt-8 pb-2">
             {title && <h1 className="text-2xl font-bold text-green-900">{title}</h1>}
             {subtitle && <p className="text-gray-700">{subtitle}</p>}
           </div>
-          {/* Content */}
           <div className="flex-1 px-10 pb-8">{children}</div>
         </main>
       </div>

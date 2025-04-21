@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Wrench } from "lucide-react";
@@ -9,11 +8,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
-            <Wrench className="h-6 w-6 text-white" />
-            <Link to="/" className="text-white text-2xl font-bold">
-              <span className="text-white">F</span>
-              <span className="text-orange-500">ix</span>
-              <span className="text-white">FINDER</span>
+            <Link to="/" className="flex items-center h-10">
+              <img
+                src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+                alt="FixFinder Logo"
+                className="h-10 object-contain"
+                style={{ maxWidth: 150 }}
+              />
             </Link>
           </div>
           

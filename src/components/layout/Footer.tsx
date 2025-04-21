@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 
@@ -9,7 +8,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div>
-            <h3 className="text-lg font-bold mb-4">FixFINDER</h3>
+            {/* Logo image replacement */}
+            <div className="mb-4">
+              <img
+                src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+                alt="FixFinder Logo"
+                className="h-8 object-contain"
+                style={{ maxWidth: 120 }}
+              />
+            </div>
             <p className="mb-4">Connecting you to reliable handyman services for all your home maintenance and repair needs.</p>
             <div className="flex items-center mb-2">
               <Phone className="h-4 w-4 mr-2" />
@@ -93,6 +100,15 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-green-400 mt-8 pt-8 text-center">
+          <div className="flex justify-center mb-3">
+            {/* Footer logo again (small version) */}
+            <img
+              src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+              alt="FixFinder Logo"
+              className="h-8 object-contain"
+              style={{ maxWidth: 120 }}
+            />
+          </div>
           <p>&copy; {new Date().getFullYear()} FixFinder. All rights reserved.</p>
         </div>
       </div>

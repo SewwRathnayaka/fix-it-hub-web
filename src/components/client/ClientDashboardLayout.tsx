@@ -1,4 +1,3 @@
-
 import { ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -45,13 +44,14 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
       <header className="bg-green-500 shadow-md">
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center space-x-2">
-              <Wrench className="h-6 w-6 text-white" />
-              <span className="text-white text-2xl font-bold">
-                <span className="text-white">F</span>
-                <span className="text-orange-500">ix</span>
-                <span className="text-white">FINDER</span>
-              </span>
+            {/* Logo replacement */}
+            <Link to="/" className="flex items-center h-10">
+              <img
+                src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+                alt="FixFinder Logo"
+                className="h-10 object-contain"
+                style={{ maxWidth: 150 }}
+              />
             </Link>
             
             <nav className="hidden md:flex items-center space-x-8">
@@ -156,11 +156,13 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
       {/* Footer with logo */}
       <div className="w-full flex justify-center p-4 bg-white border-t">
         <div className="flex items-center">
-          <span className="text-2xl font-bold">
-            <span className="text-green-500">F</span>
-            <span className="text-orange-500">ix</span>
-            <span>FINDER</span>
-          </span>
+          {/* Logo replacement */}
+          <img
+            src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+            alt="FixFinder Logo"
+            className="h-8 object-contain"
+            style={{ maxWidth: 120 }}
+          />
         </div>
       </div>
     </div>
