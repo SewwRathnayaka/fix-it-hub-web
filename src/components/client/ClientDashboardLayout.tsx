@@ -1,3 +1,4 @@
+
 import { ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -41,35 +42,24 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-green-500 shadow-md">
+      <header className="shadow-md" style={{ background: "#14B22D" }}>
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            {/* Logo replacement */}
-            <Link to="/" className="flex items-center h-10">
-              <img
-                src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
-                alt="FixFinder Logo"
-                className="h-10 object-contain"
-                style={{ maxWidth: 150 }}
-              />
-            </Link>
-            
-            <nav className="hidden md:flex items-center space-x-8">
-              <Link to="/" className="text-white hover:text-green-100 font-medium">
-                Home
+            {/* Empty left spacer */}
+            <div className="flex-1 flex items-center justify-start"></div>
+            {/* Logo centered */}
+            <div className="flex-1 flex items-center justify-center">
+              <Link to="/" className="flex items-center h-10">
+                <img
+                  src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+                  alt="FixFinder Logo"
+                  className="h-10 object-contain"
+                  style={{ maxWidth: 150 }}
+                />
               </Link>
-              <Link to="/about" className="text-white hover:text-green-100 font-medium">
-                About Us
-              </Link>
-              <Link to="/services" className="text-white hover:text-green-100 font-medium">
-                Services
-              </Link>
-              <Link to="/contact" className="text-white hover:text-green-100 font-medium">
-                Contact Us
-              </Link>
-            </nav>
-            
-            <div className="flex items-center space-x-3">
+            </div>
+            {/* Notifications and Profile */}
+            <div className="flex-1 flex items-center justify-end space-x-3">
               <div className="relative">
                 <Bell className="h-6 w-6 text-white cursor-pointer" />
                 <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
