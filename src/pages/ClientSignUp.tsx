@@ -1,23 +1,20 @@
 
-import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
-import { Dialog, DialogContent } from "@/components/ui/dialog";
-import ClientDetailsForm from "@/components/client/ClientDetailsForm";
 
 const ClientSignUp = () => {
   const navigate = useNavigate();
-  const [showDetails, setShowDetails] = useState(false);
   const [username, setUsername] = useState("");
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowDetails(true);
+    navigate('/client/complete-profile');
   };
 
   const handleGoogleSignUp = () => {
-    setShowDetails(true);
+    navigate('/client/complete-profile');
   };
 
   return (
@@ -100,12 +97,6 @@ const ClientSignUp = () => {
           </div>
         </div>
       </div>
-
-      <Dialog open={showDetails} onOpenChange={setShowDetails}>
-        <DialogContent className="sm:max-w-[500px]">
-          <ClientDetailsForm username={username} />
-        </DialogContent>
-      </Dialog>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -8,7 +7,6 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
-// Removed Login and SignUp imports
 import NotFound from "./pages/NotFound";
 import SelectRole from "./pages/SelectRole";
 import ClientSignUp from "./pages/ClientSignUp";
@@ -31,6 +29,7 @@ import HandymanProfile from "./pages/handyman/HandymanProfile";
 import HandymanNotifications from "./pages/handyman/HandymanNotifications";
 import HandymanAccount from "./pages/handyman/HandymanAccount";
 import HandymanBilling from "./pages/handyman/HandymanBilling";
+import CompleteProfile from "./pages/CompleteProfile";
 
 const queryClient = new QueryClient();
 
@@ -45,14 +44,11 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          {/* Removed /login and /signup routes */}
           <Route path="/select-role" element={<SelectRole />} />
           <Route path="/signup/client" element={<ClientSignUp />} />
           <Route path="/signup/handyman" element={<HandymanSignUp />} />
           <Route path="/login/client" element={<ClientLogin />} />
           <Route path="/login/handyman" element={<HandymanLogin />} />
-          
-          {/* Client Dashboard Routes */}
           <Route path="/client/dashboard" element={<ClientDashboard />} />
           <Route path="/client/profile" element={<ClientProfile />} />
           <Route path="/client/service-history" element={<ClientServiceHistory />} />
@@ -60,8 +56,7 @@ const App = () => (
           <Route path="/client/reviews" element={<ClientReviews />} />
           <Route path="/client/payment-billing" element={<ClientPaymentBilling />} />
           <Route path="/client/account-settings" element={<ClientAccountSettings />} />
-          
-          {/* Handyman Dashboard Routes */}
+          <Route path="/client/complete-profile" element={<CompleteProfile />} />
           <Route path="/handyman/dashboard" element={<HandymanDashboard />} />
           <Route path="/handyman/schedule" element={<HandymanSchedule />} />
           <Route path="/handyman/jobs" element={<HandymanJobs />} />
