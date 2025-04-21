@@ -1,11 +1,24 @@
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import ClientDetailsForm from "@/components/client/ClientDetailsForm";
 
 const ClientSignUp = () => {
   const navigate = useNavigate();
+  const [showDetails, setShowDetails] = useState(false);
+  const [username, setUsername] = useState("");
+
+  const handleSignUp = (e: React.FormEvent) => {
+    e.preventDefault();
+    setShowDetails(true);
+  };
+
+  const handleGoogleSignUp = () => {
+    setShowDetails(true);
+  };
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-r from-orange-50 to-green-50">
@@ -23,27 +36,19 @@ const ClientSignUp = () => {
           <p className="mb-4 text-center text-gray-600">
             Get access to qualified handymen for all your needs.
           </p>
-          <form>
+          <form onSubmit={handleSignUp}>
             <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Full Name
+              <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                Username
               </label>
               <input
-                id="name"
+                id="username"
                 type="text"
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Jane Doe"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="janedoe@email.com"
+                placeholder="Enter username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
             <div className="mb-4">
@@ -55,6 +60,19 @@ const ClientSignUp = () => {
                 type="password"
                 className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Enter password"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="repassword" className="block text-sm font-medium text-gray-700 mb-1">
+                Re-enter Password
+              </label>
+              <input
+                id="repassword"
+                type="password"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Re-enter password"
+                required
               />
             </div>
             <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white mt-2">Sign up</Button>
@@ -64,21 +82,32 @@ const ClientSignUp = () => {
             <span className="mx-4 text-gray-400">or</span>
             <hr className="flex-1 border-gray-200" />
           </div>
-          <Button variant="outline" className="w-full flex items-center justify-center gap-2">
+          <Button 
+            variant="outline" 
+            className="w-full flex items-center justify-center gap-2"
+            onClick={handleGoogleSignUp}
+          >
             <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="h-5 w-5" alt="Google" />
             Sign up with Google
           </Button>
           <div className="text-center mt-4">
             <p className="text-sm">
               Already have an account?{" "}
-              <Link to="/login?role=client" className="text-green-600 hover:underline">
+              <Link to="/login/client" className="text-green-600 hover:underline">
                 Log in as client
               </Link>
             </p>
           </div>
         </div>
       </div>
+
+      <Dialog open={showDetails} onOpenChange={setShowDetails}>
+        <DialogContent className="sm:max-w-[500px]">
+          <ClientDetailsForm username={username} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
+
 export default ClientSignUp;
