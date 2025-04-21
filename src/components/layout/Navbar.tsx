@@ -36,12 +36,12 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-3">
-            <Link to="/login">
+            <Link to="/select-role?action=login">
               <Button variant="outline" className="bg-white text-green-600 hover:bg-green-100">
                 Login
               </Button>
             </Link>
-            <Link to="/signup">
+            <Link to="/select-role?action=signup">
               <Button className="bg-orange-500 text-white hover:bg-orange-600">
                 Sign Up
               </Button>

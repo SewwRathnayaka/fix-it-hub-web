@@ -8,8 +8,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
-import Login from "./pages/Login";
-import SignUp from "./pages/SignUp";
+// Removed Login and SignUp imports
 import NotFound from "./pages/NotFound";
 import SelectRole from "./pages/SelectRole";
 import ClientSignUp from "./pages/ClientSignUp";
@@ -46,8 +45,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          {/* Removed /login and /signup routes */}
           <Route path="/select-role" element={<SelectRole />} />
           <Route path="/signup/client" element={<ClientSignUp />} />
           <Route path="/signup/handyman" element={<HandymanSignUp />} />
