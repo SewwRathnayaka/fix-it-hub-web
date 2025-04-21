@@ -85,7 +85,7 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
                   <SidebarMenuItem>
                     <SidebarMenuButton
                       asChild
-                      variant="destructive"
+                      variant="outline"
                       onClick={() => {
                         localStorage.removeItem("fixfinder_user");
                         navigate("/");
