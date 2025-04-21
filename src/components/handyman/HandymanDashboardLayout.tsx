@@ -1,7 +1,7 @@
 
 import React, { ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { User, Calendar, Briefcase, Users, Gear, LogOut } from "lucide-react";
+import { User, Calendar, Briefcase, Users, Cog, LogOut } from "lucide-react";
 
 const navItems = [
   { label: "Dashboard", icon: "dashboard", path: "/handyman/dashboard" },
@@ -16,7 +16,7 @@ const iconMap: Record<string, React.ReactNode> = {
   calendar: <Calendar className="h-5 w-5" />,
   briefcase: <Briefcase className="h-5 w-5" />,
   users: <Users className="h-5 w-5" />,
-  gear: <Gear className="h-5 w-5" />,
+  gear: <Cog className="h-5 w-5" />,
 };
 
 interface Props {

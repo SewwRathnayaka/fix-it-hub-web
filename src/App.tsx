@@ -23,6 +23,7 @@ import ClientUpcomingBookings from "./pages/client/ClientUpcomingBookings";
 import ClientReviews from "./pages/client/ClientReviews";
 import ClientPaymentBilling from "./pages/client/ClientPaymentBilling";
 import ClientAccountSettings from "./pages/client/ClientAccountSettings";
+import HandymanDashboard from "./pages/handyman/HandymanDashboard";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +54,9 @@ const App = () => (
           <Route path="/client/reviews" element={<ClientReviews />} />
           <Route path="/client/payment-billing" element={<ClientPaymentBilling />} />
           <Route path="/client/account-settings" element={<ClientAccountSettings />} />
+          
+          {/* Handyman Dashboard Routes */}
+          <Route path="/handyman/dashboard" element={<HandymanDashboard />} />
           
           <Route path="*" element={<NotFound />} />
         </Routes>
