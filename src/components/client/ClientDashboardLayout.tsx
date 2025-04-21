@@ -146,10 +146,10 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
       {/* Footer with logo */}
       <div className="w-full flex justify-center p-4 bg-white border-t">
         <div className="flex items-center">
-          {/* Logo replacement */}
+          {/* Updated logo in footer only */}
           <img
-            src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
-            alt="FixFinder Logo"
+            src="/lovable-uploads/dd421578-d45c-4aa5-ac80-e96f8fe812e5.png"
+            alt="FixFinder New Logo"
             className="h-8 object-contain"
             style={{ maxWidth: 120 }}
           />
@@ -160,3 +160,4 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
 };
 
 export default ClientDashboardLayout;
+
