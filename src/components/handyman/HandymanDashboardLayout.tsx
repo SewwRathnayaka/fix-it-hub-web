@@ -1,3 +1,4 @@
+
 import React, { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -103,9 +104,9 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
         </Sidebar>
         <main className="flex-1 flex flex-col min-h-screen bg-[#f5faf7]">
           <div className="w-full px-10 py-6 flex items-center justify-between border-b bg-white shadow-sm">
-            <span className="text-3xl font-black tracking-tight flex items-center gap-2">
+            <span className="text-3xl font-black tracking-tight flex items-center gap-2 mx-auto">
               <img
-                src="/lovable-uploads/a707e924-f315-4907-a798-16e19d2e7a69.png"
+                src="/lovable-uploads/f8b0003c-8de6-4035-b677-59817d3a83cf.png"
                 alt="FixFinder Logo"
                 className="h-9 object-contain"
                 style={{ maxWidth: 140 }}
@@ -125,3 +126,4 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
 };
 
 export default HandymanDashboardLayout;
+
