@@ -16,7 +16,7 @@ const notifications = [
     unread: true,
     actions: [
       { label: "View Details" },
-      { label: "Reschedule", variant: "outline" },
+      { label: "Reschedule", variant: "outline" as const },
     ],
   },
   {
@@ -38,7 +38,7 @@ const notifications = [
     unread: true,
     actions: [
       { label: "View Review" },
-      { label: "Send Thanks", variant: "outline" },
+      { label: "Send Thanks", variant: "outline" as const },
     ],
   },
   {
@@ -59,7 +59,7 @@ const notifications = [
     time: "2 weeks ago",
     actions: [
       { label: "Manage Subscription" },
-      { label: "Update Payment", variant: "outline" },
+      { label: "Update Payment", variant: "outline" as const },
     ],
   },
 ];

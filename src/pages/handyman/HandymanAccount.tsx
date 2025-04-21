@@ -14,7 +14,7 @@ import {
   User,
   Lock,
   Shield,
-  Google,
+  Mail,
   Facebook,
   Trash2,
 } from "lucide-react";
@@ -139,7 +139,7 @@ const ConnectedAccountsSection = () => {
           <div className="flex justify-between items-center bg-gray-50 rounded px-4 py-2">
             <div className="flex items-center gap-3">
               <div className="bg-green-100 rounded-full w-8 h-8 flex items-center justify-center">
-                <Google className="h-4 w-4 text-green-700" />
+                <Mail className="h-4 w-4 text-green-700" />
               </div>
               <span className="font-medium text-gray-900">Google</span>
               <span className="text-xs text-gray-500 ml-2">Not Connected</span>
