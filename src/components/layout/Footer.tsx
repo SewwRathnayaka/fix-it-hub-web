@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#8E9196] text-white">
+    <footer className="bg-[#2FA82F] text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -82,7 +82,7 @@ const Footer = () => {
                 placeholder="Your email address" 
                 className="px-4 py-2 w-full text-gray-800 rounded-l focus:outline-none"
               />
-              <button className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-r">
+              <button className="bg-[#FF8000] hover:bg-[#e67300] px-4 py-2 rounded-r">
                 Subscribe
               </button>
             </div>
@@ -96,3 +96,4 @@ const Footer = () => {
   );
 };
 export default Footer;
+
