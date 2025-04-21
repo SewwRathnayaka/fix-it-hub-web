@@ -2,18 +2,29 @@
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
-import { Wrench, Droplet, Lightbulb, PaintBucket, HardHat, Home } from "lucide-react";
+import { Wrench, Droplet, Lightbulb, PaintBucket, HardHat, Home, ArrowRight } from "lucide-react";
+import * as React from "react";
+import ServiceDetailDialog from "@/components/services/ServiceDetailDialog";
+
+// ServiceKey matches dialog's ServiceKey type.
+type ServiceKey = "Plumbing" | "Electrical" | "Carpentry" | "Painting" | "Home Repairs" | "Renovations";
 
 interface ServiceCardProps {
-  title: string;
+  title: ServiceKey;
   description: string;
   icon: React.ReactNode;
   image: string;
+  onClick: () => void;
 }
 
-const ServiceCard = ({ title, description, icon, image }: ServiceCardProps) => {
+const ServiceCard = ({ title, description, icon, image, onClick }: ServiceCardProps) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+    <button
+      type="button"
+      onClick={onClick}
+      className="group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 focus:outline-none w-full text-left"
+      tabIndex={0}
+    >
       <div className="h-48 overflow-hidden relative">
         <img 
           src={image} 
@@ -31,58 +42,68 @@ const ServiceCard = ({ title, description, icon, image }: ServiceCardProps) => {
           </div>
           <h3 className="text-lg font-semibold">{title}</h3>
         </div>
-        <p className="text-gray-600 mb-4">{description}</p>
-        <div className="flex justify-center">
-          <a href={`/services/${title.toLowerCase().replace(/\s+/g, '-')}`}>
-            <Button className="bg-green-500 hover:bg-green-600">
-              Book Service
-            </Button>
-          </a>
+        <p className="text-gray-600 mb-2">{description}</p>
+        <div className="flex items-center gap-2 text-green-700 text-sm font-medium">
+          <ArrowRight className="h-4 w-4" />
+          Click to see more details
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
+const SERVICES: {
+  title: ServiceKey;
+  description: string;
+  icon: React.ReactNode;
+  image: string;
+}[] = [
+  {
+    title: "Plumbing",
+    description: "Expert plumbing services for leak repairs, pipe installations, toilet repairs, and more.",
+    icon: <Droplet className="h-5 w-5 text-green-500" />,
+    image: "public/lovable-uploads/a6fd3ec1-585e-4685-bc74-26d201fb00b6.png"
+  },
+  {
+    title: "Electrical",
+    description: "Professional electrical services for installations, repairs, wiring, switches, and outlets.",
+    icon: <Lightbulb className="h-5 w-5 text-green-500" />,
+    image: "public/lovable-uploads/d90e9dea-d454-4da2-a4ee-b5190ec3cb0e.png"
+  },
+  {
+    title: "Carpentry",
+    description: "Skilled carpentry for furniture assembly, custom builds, repairs, and woodworking projects.",
+    icon: <Wrench className="h-5 w-5 text-green-500" />,
+    image: "public/lovable-uploads/3605cbc1-3484-439e-9e60-44ecd68d164e.png"
+  },
+  {
+    title: "Painting",
+    description: "Quality painting services for interior and exterior walls, trim, doors, and decorative finishes.",
+    icon: <PaintBucket className="h-5 w-5 text-green-500" />,
+    image: "public/lovable-uploads/404a883c-6523-4403-a00f-272976243f6f.png"
+  },
+  {
+    title: "Home Repairs",
+    description: "General home repairs including drywall patching, door adjustments, and hardware installation.",
+    icon: <Home className="h-5 w-5 text-green-500" />,
+    image: "public/lovable-uploads/f1ac4051-e1a6-4dde-a3f7-f065c2486f55.png" 
+  },
+  {
+    title: "Renovations",
+    description: "Small to medium renovation projects for kitchens, bathrooms, basements, and other spaces.",
+    icon: <HardHat className="h-5 w-5 text-green-500" />,
+    image: "public/lovable-uploads/c9966b20-1738-4ad6-8ec2-cced8d1e3122.png"
+  }
+];
+
 const Services = () => {
-  const services = [
-    {
-      title: "Plumbing",
-      description: "Expert plumbing services for leak repairs, pipe installations, toilet repairs, and more.",
-      icon: <Droplet className="h-5 w-5 text-green-500" />,
-      image: "public/lovable-uploads/a6fd3ec1-585e-4685-bc74-26d201fb00b6.png"
-    },
-    {
-      title: "Electrical",
-      description: "Professional electrical services for installations, repairs, wiring, switches, and outlets.",
-      icon: <Lightbulb className="h-5 w-5 text-green-500" />,
-      image: "public/lovable-uploads/d90e9dea-d454-4da2-a4ee-b5190ec3cb0e.png"
-    },
-    {
-      title: "Carpentry",
-      description: "Skilled carpentry for furniture assembly, custom builds, repairs, and woodworking projects.",
-      icon: <Wrench className="h-5 w-5 text-green-500" />,
-      image: "public/lovable-uploads/3605cbc1-3484-439e-9e60-44ecd68d164e.png"
-    },
-    {
-      title: "Painting",
-      description: "Quality painting services for interior and exterior walls, trim, doors, and decorative finishes.",
-      icon: <PaintBucket className="h-5 w-5 text-green-500" />,
-      image: "public/lovable-uploads/404a883c-6523-4403-a00f-272976243f6f.png"
-    },
-    {
-      title: "Home Repairs",
-      description: "General home repairs including drywall patching, door adjustments, and hardware installation.",
-      icon: <Home className="h-5 w-5 text-green-500" />,
-      image: "public/lovable-uploads/f1ac4051-e1a6-4dde-a3f7-f065c2486f55.png" 
-    },
-    {
-      title: "Renovations",
-      description: "Small to medium renovation projects for kitchens, bathrooms, basements, and other spaces.",
-      icon: <HardHat className="h-5 w-5 text-green-500" />,
-      image: "public/lovable-uploads/c9966b20-1738-4ad6-8ec2-cced8d1e3122.png"
-    }
-  ];
+  const [open, setOpen] = React.useState(false);
+  const [selected, setSelected] = React.useState<ServiceKey | null>(null);
+
+  const handleCardClick = (title: ServiceKey) => {
+    setSelected(title);
+    setOpen(true);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -110,13 +131,14 @@ const Services = () => {
         <div className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service) => (
+              {SERVICES.map((service) => (
                 <ServiceCard 
                   key={service.title}
                   title={service.title}
                   description={service.description}
                   icon={service.icon}
                   image={service.image}
+                  onClick={() => handleCardClick(service.title)}
                 />
               ))}
             </div>
@@ -136,6 +158,16 @@ const Services = () => {
             </a>
           </div>
         </div>
+        {selected && (
+          <ServiceDetailDialog
+            open={open}
+            onOpenChange={(val) => {
+              setOpen(val);
+              if (!val) setSelected(null);
+            }}
+            service={selected}
+          />
+        )}
       </main>
       <Footer />
     </div>
@@ -143,3 +175,4 @@ const Services = () => {
 };
 
 export default Services;
+
