@@ -1,10 +1,11 @@
-import { Link } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
 const Login = () => {
-  const navigate = useNavigate?.() || (() => {});
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col">
