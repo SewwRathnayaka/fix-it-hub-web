@@ -6,6 +6,7 @@ import { User } from "lucide-react";
 const ClientSignUp = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-green-50 to-orange-50 p-8">
+      {/* Removed Navbar */}
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-2">Sign up as Client</h2>
         <p className="mb-4 text-center text-gray-600">
@@ -65,6 +66,7 @@ const ClientSignUp = () => {
           </p>
         </div>
       </div>
+      {/* Removed Footer */}
     </div>
   );
 };

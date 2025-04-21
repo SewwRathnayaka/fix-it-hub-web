@@ -12,7 +12,7 @@ const Navbar = () => {
           <div className="flex items-center space-x-2">
             <Link to="/">
               <img
-                src="/lovable-uploads/3605cbc1-3484-439e-9e60-44ecd68d164e.png"
+                src="/lovable-uploads/aeb9264e-099a-4d6c-bdf9-30a558026d38.png"
                 alt="FixFinder logo"
                 className="h-10 w-auto"
                 style={{ background: "transparent" }}
