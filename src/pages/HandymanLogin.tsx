@@ -13,10 +13,8 @@ const HandymanLogin = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate authentication (no check, just redirect)
     setTimeout(() => {
       setLoading(false);
-      // In real app, you'd store session token/user info here
       navigate("/handyman/dashboard");
     }, 600);
   };

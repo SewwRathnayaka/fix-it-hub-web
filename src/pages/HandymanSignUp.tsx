@@ -9,9 +9,9 @@ const HandymanSignUp = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-gradient-to-r from-orange-50 to-green-50">
       <Navbar />
-      <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-green-50 to-orange-50">
+      <div className="flex flex-1 flex-col items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
           <button
             onClick={() => navigate(-1)}
