@@ -4,8 +4,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 const ClientLogin = () => {
   const navigate = useNavigate();
@@ -21,8 +19,6 @@ const ClientLogin = () => {
     // Simulate login - in a real app, this would validate against a backend
     setTimeout(() => {
       setIsLoading(false);
-      
-      // Store user info in localStorage to simulate authentication
       localStorage.setItem("fixfinder_user", JSON.stringify({
         name: "Sarah Johnson",
         email: email,
@@ -45,20 +41,17 @@ const ClientLogin = () => {
           }
         ]
       }));
-      
       toast({
         title: "Login successful",
         description: "Welcome back to FixFinder!",
       });
-      
       navigate("/client/dashboard");
     }, 1000);
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-green-50 to-orange-50">
+    <div className="min-h-screen flex flex-col bg-gradient-to-r from-orange-50 to-green-50">
+      <div className="flex flex-1 flex-col items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h2 className="text-2xl font-bold text-center mb-2">Log in as Client</h2>
           <form onSubmit={handleLogin}>
@@ -105,14 +98,13 @@ const ClientLogin = () => {
           <div className="text-center mt-4">
             <p className="text-sm">
               Don&apos;t have an account?{" "}
-              <Link to="/signup/client" className="text-green-600 hover:underline">
+              <Link to="/signup/client" className="text-orange-600 hover:underline">
                 Sign up as client
               </Link>
             </p>
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
