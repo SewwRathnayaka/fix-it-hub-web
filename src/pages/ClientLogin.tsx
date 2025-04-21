@@ -1,59 +1,114 @@
 
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 
 const ClientLogin = () => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    // Simulate login - in a real app, this would validate against a backend
+    setTimeout(() => {
+      setIsLoading(false);
+      
+      // Store user info in localStorage to simulate authentication
+      localStorage.setItem("fixfinder_user", JSON.stringify({
+        name: "Sarah Johnson",
+        email: email,
+        role: "client",
+        phone: "(512) 123-4567",
+        addresses: [
+          {
+            type: "Home",
+            street: "123 Main Street",
+            city: "Austin",
+            state: "TX",
+            zip: "78701",
+          },
+          {
+            type: "Work",
+            street: "456 Business Ave",
+            city: "Austin",
+            state: "TX",
+            zip: "78702",
+          }
+        ]
+      }));
+      
+      toast({
+        title: "Login successful",
+        description: "Welcome back to FixFinder!",
+      });
+      
+      navigate("/client/dashboard");
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-r from-green-50 to-orange-50 p-8">
-      {/* Removed Navbar */}
       <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-2">Log in as Client</h2>
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email
             </label>
-            <input
+            <Input
               id="email"
               type="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
-              placeholder="janedoe@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full"
+              placeholder="you@example.com"
+              required
             />
           </div>
-          <div className="mb-4">
+          <div className="mb-6">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
-            <input
+            <Input
               id="password"
               type="password"
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full"
               placeholder="Enter password"
+              required
             />
           </div>
-          <Button className="w-full bg-green-600 hover:bg-green-700 text-white mt-2">Log in</Button>
+          <Button
+            type="submit"
+            className="w-full bg-orange-500 hover:bg-orange-600 text-white mb-4"
+            disabled={isLoading}
+          >
+            {isLoading ? "Logging in..." : "Log In"}
+          </Button>
+          <Button variant="outline" className="w-full flex items-center justify-center gap-2" type="button">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="h-5 w-5" alt="Google" />
+            Continue with Google
+          </Button>
         </form>
-        <div className="flex items-center my-4">
-          <hr className="flex-1 border-gray-200" />
-          <span className="mx-4 text-gray-400">or</span>
-          <hr className="flex-1 border-gray-200" />
-        </div>
-        <Button variant="outline" className="w-full flex items-center justify-center gap-2">
-          <img src="https://www.svgrepo.com/show/475656/google-color.svg" className="h-5 w-5" alt="Google" />
-          Log in with Google
-        </Button>
         <div className="text-center mt-4">
           <p className="text-sm">
-            Don't have an account?{" "}
-            <Link to="/select-role?action=signup" className="text-green-600 hover:underline">
-              Sign up
+            Don&apos;t have an account?{" "}
+            <Link to="/signup/client" className="text-green-600 hover:underline">
+              Sign up as client
             </Link>
           </p>
         </div>
       </div>
-      {/* Removed Footer */}
     </div>
   );
 };
+
 export default ClientLogin;
