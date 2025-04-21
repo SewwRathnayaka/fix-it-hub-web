@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import {
   Dialog,
@@ -49,8 +48,8 @@ const DETAILS: Record<ServiceKey, {
       "Drain cleaning & pipe fitting",
       "Water heater setup and repair",
     ],
-    buttonLabel: "Book Now",
-    buttonHref: "/services/plumbing",
+    buttonLabel: "Secure your service now",
+    buttonHref: "/signup/client",
   },
   Electrical: {
     icon: <span role="img" aria-label="Electrical" className="text-2xl">⚡</span>,
@@ -71,8 +70,8 @@ const DETAILS: Record<ServiceKey, {
       "Generator and UPS connections",
       "Electrical safety inspections",
     ],
-    buttonLabel: "Book Now",
-    buttonHref: "/services/electrical",
+    buttonLabel: "Secure your service now",
+    buttonHref: "/signup/client",
   },
   Carpentry: {
     icon: <span role="img" aria-label="Carpentry" className="text-2xl">🪵</span>,
@@ -93,8 +92,8 @@ const DETAILS: Record<ServiceKey, {
       "Wood panel installation",
       "Decorative woodwork",
     ],
-    buttonLabel: "Book Now",
-    buttonHref: "/services/carpentry",
+    buttonLabel: "Secure your service now",
+    buttonHref: "/signup/client",
   },
   Painting: {
     icon: <span role="img" aria-label="Painting" className="text-2xl">🎨</span>,
@@ -115,8 +114,8 @@ const DETAILS: Record<ServiceKey, {
       "Paint color consultation",
       "Surface preparation and clean-up",
     ],
-    buttonLabel: "Book Now",
-    buttonHref: "/services/painting",
+    buttonLabel: "Secure your service now",
+    buttonHref: "/signup/client",
   },
   "Home Repairs": {
     icon: <span role="img" aria-label="Home Repairs" className="text-2xl">🔧</span>,
@@ -137,8 +136,8 @@ const DETAILS: Record<ServiceKey, {
       "Minor tile, window, and door fixes",
       "General maintenance tasks",
     ],
-    buttonLabel: "Book Now",
-    buttonHref: "/services/home-repairs",
+    buttonLabel: "Secure your service now",
+    buttonHref: "/signup/client",
   },
   Renovations: {
     icon: <span role="img" aria-label="Renovations" className="text-2xl">🏠</span>,
@@ -159,8 +158,8 @@ const DETAILS: Record<ServiceKey, {
       "Wall knock-downs & layout changes",
       "Interior design support",
     ],
-    buttonLabel: "Book Now",
-    buttonHref: "/services/renovations",
+    buttonLabel: "Secure your service now",
+    buttonHref: "/signup/client",
   }
 };
 
