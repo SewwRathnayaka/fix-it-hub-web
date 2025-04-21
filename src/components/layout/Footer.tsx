@@ -1,11 +1,10 @@
 
-// Updated footer background color and adjusted text colors to white as requested
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer style={{ backgroundColor: "#14B22D" }} className="text-white">
+    <footer className="bg-green-500 text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -25,6 +24,7 @@ const Footer = () => {
               <span>123 Main Street, Anytown, USA</span>
             </div>
           </div>
+          
           {/* Quick Links */}
           <div>
             <h3 className="text-lg font-bold mb-4">Quick Links</h3>
@@ -42,13 +42,14 @@ const Footer = () => {
                 <Link to="/contact" className="hover:underline">Contact Us</Link>
               </li>
               <li>
-                <Link to="/select-role?action=login" className="hover:underline">Login</Link>
+                <Link to="/login" className="hover:underline">Login</Link>
               </li>
               <li>
-                <Link to="/select-role?action=signup" className="hover:underline">Sign Up</Link>
+                <Link to="/signup" className="hover:underline">Sign Up</Link>
               </li>
             </ul>
           </div>
+          
           {/* Services */}
           <div>
             <h3 className="text-lg font-bold mb-4">Services</h3>
@@ -73,6 +74,7 @@ const Footer = () => {
               </li>
             </ul>
           </div>
+          
           {/* Newsletter */}
           <div>
             <h3 className="text-lg font-bold mb-4">Subscribe</h3>
@@ -83,17 +85,19 @@ const Footer = () => {
                 placeholder="Your email address" 
                 className="px-4 py-2 w-full text-gray-800 rounded-l focus:outline-none"
               />
-              <button className="bg-white hover:bg-gray-100 text-green-700 px-4 py-2 rounded-r">
+              <button className="bg-orange-500 hover:bg-orange-600 px-4 py-2 rounded-r">
                 Subscribe
               </button>
             </div>
           </div>
         </div>
-        <div className="border-t border-white mt-8 pt-8 text-center">
+        
+        <div className="border-t border-green-400 mt-8 pt-8 text-center">
           <p>&copy; {new Date().getFullYear()} FixFinder. All rights reserved.</p>
         </div>
       </div>
     </footer>
   );
 };
+
 export default Footer;
