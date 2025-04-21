@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -10,11 +11,6 @@ import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import NotFound from "./pages/NotFound";
-import SelectRole from "./pages/SelectRole";
-import ClientSignUp from "./pages/ClientSignUp";
-import HandymanSignUp from "./pages/HandymanSignUp";
-import ClientLogin from "./pages/ClientLogin";
-import HandymanLogin from "./pages/HandymanLogin";
 
 const queryClient = new QueryClient();
 
@@ -31,11 +27,7 @@ const App = () => (
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path="/select-role" element={<SelectRole />} />
-          <Route path="/signup/client" element={<ClientSignUp />} />
-          <Route path="/signup/handyman" element={<HandymanSignUp />} />
-          <Route path="/login/client" element={<ClientLogin />} />
-          <Route path="/login/handyman" element={<HandymanLogin />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
