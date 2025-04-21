@@ -20,7 +20,7 @@ const SelectRole = () => {
   const action = queryParams.get("action") || "signup";
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100">
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-r from-orange-50 to-green-50">
       <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-8 relative">
         <button
           onClick={() => navigate(-1)}

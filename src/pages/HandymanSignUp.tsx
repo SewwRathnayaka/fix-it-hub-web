@@ -1,8 +1,6 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { ArrowLeft } from "lucide-react";
 
 const HandymanSignUp = () => {
@@ -10,7 +8,6 @@ const HandymanSignUp = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-r from-orange-50 to-green-50">
-      <Navbar />
       <div className="flex flex-1 flex-col items-center justify-center">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
           <button
@@ -32,7 +29,7 @@ const HandymanSignUp = () => {
               <input
                 id="name"
                 type="text"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="John Doe"
               />
             </div>
@@ -43,7 +40,7 @@ const HandymanSignUp = () => {
               <input
                 id="email"
                 type="email"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="johndoe@email.com"
               />
             </div>
@@ -54,7 +51,7 @@ const HandymanSignUp = () => {
               <input
                 id="password"
                 type="password"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder="Enter password"
               />
             </div>
@@ -93,7 +90,6 @@ const HandymanSignUp = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
