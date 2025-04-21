@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { ArrowLeft } from "lucide-react";
 
 const ClientLogin = () => {
   const navigate = useNavigate();
@@ -52,7 +53,14 @@ const ClientLogin = () => {
   return (
     <div className="min-h-screen flex flex-col bg-gradient-to-r from-orange-50 to-green-50">
       <div className="flex flex-1 flex-col items-center justify-center">
-        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
+          <button
+            onClick={() => navigate(-1)}
+            aria-label="Back"
+            className="absolute top-4 left-4 p-1 rounded hover:bg-gray-200 transition"
+          >
+            <ArrowLeft size={24} />
+          </button>
           <h2 className="text-2xl font-bold text-center mb-2">Log in as Client</h2>
           <form onSubmit={handleLogin}>
             <div className="mb-4">

@@ -1,12 +1,26 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useEffect } from "react";
+import { ArrowLeft } from "lucide-react";
 
 const ClientSignUp = () => {
+  const navigate = useNavigate();
+
+  // no change on form functionality here, just add back arrow
+
   return (
     <div className="min-h-screen flex flex-col">
       <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-green-50 to-orange-50">
-        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative">
+          <button
+            onClick={() => navigate(-1)}
+            aria-label="Back"
+            className="absolute top-4 left-4 p-1 rounded hover:bg-gray-200 transition"
+          >
+            <ArrowLeft size={24} />
+          </button>
+
           <h2 className="text-2xl font-bold text-center mb-2">Sign up as Client</h2>
           <p className="mb-4 text-center text-gray-600">
             Get access to qualified handymen for all your needs.
