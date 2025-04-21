@@ -1,0 +1,149 @@
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Search } from "lucide-react";
+import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
+
+const ClientDashboard = () => {
+  const navigate = useNavigate();
+  const userString = localStorage.getItem("fixfinder_user");
+  const user = userString ? JSON.parse(userString) : null;
+  
+  const popularServices = [
+    { id: 1, name: "Plumbing", icon: "🔧" },
+    { id: 2, name: "Electrical", icon: "⚡" },
+    { id: 3, name: "Painting", icon: "🖌️" },
+    { id: 4, name: "Home Repair", icon: "🏠" },
+  ];
+  
+  const bookings = [
+    { 
+      id: 1, 
+      service: "Plumbing Repair", 
+      handyman: "Abraham Garcia", 
+      date: "Jan 23", 
+      time: "2:00 PM", 
+      status: "upcoming", 
+      price: "$125.00" 
+    },
+    { 
+      id: 2, 
+      service: "Electrical Maintenance", 
+      handyman: "Mike Johnson", 
+      date: "Jan 25", 
+      time: "10:00 AM", 
+      status: "upcoming", 
+      price: "$95.00" 
+    },
+    { 
+      id: 3, 
+      service: "Painting", 
+      handyman: "Peter Walker", 
+      date: "Jan 18", 
+      time: "10:30 AM", 
+      status: "completed", 
+      price: "$350.00" 
+    },
+  ];
+  
+  const messages = [
+    {
+      id: 1,
+      sender: "John Smith (Plumber)",
+      message: "I'll be arriving in 10 minutes...",
+      time: "10:30 AM"
+    }
+  ];
+
+  return (
+    <ClientDashboardLayout title={`Welcome back, ${user?.name?.split(' ')[0] || 'Client'}`} subtitle="What can we help you with today?">
+      {/* Search Bar */}
+      <div className="mb-8 relative">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Search Services"
+            className="w-full md:w-96 bg-white rounded-full py-2 px-6 pr-12 shadow-sm border border-gray-200"
+          />
+          <Search className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        </div>
+      </div>
+      
+      {/* Popular Services */}
+      <div className="mb-8">
+        <h2 className="text-xl font-semibold mb-4">Popular Services</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {popularServices.map(service => (
+            <div 
+              key={service.id} 
+              className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center cursor-pointer hover:shadow-md transition-shadow"
+              onClick={() => navigate("/services")}
+            >
+              <div className="text-3xl mb-2">{service.icon}</div>
+              <div className="text-sm font-medium">{service.name}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Book a Service Button */}
+      <Button 
+        className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6 mb-8"
+        onClick={() => navigate("/services")}
+      >
+        Book a Service
+      </Button>
+      
+      {/* Your Bookings */}
+      <div className="mb-8">
+        <h2 className="text-xl font-semibold mb-4">Your Bookings</h2>
+        <div className="space-y-4">
+          {bookings.map(booking => (
+            <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+              <div className="flex items-center">
+                <div className="bg-blue-100 p-2 rounded-full mr-4">
+                  <div className="text-blue-500 text-xl">🛠️</div>
+                </div>
+                <div>
+                  <h3 className="font-medium">{booking.service}</h3>
+                  <p className="text-gray-500 text-sm">{booking.handyman} • {booking.date}, {booking.time}</p>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className={`px-2 py-1 rounded-full text-xs mr-4 ${
+                  booking.status === 'upcoming' 
+                    ? 'bg-yellow-100 text-yellow-700' 
+                    : 'bg-green-100 text-green-700'
+                }`}>
+                  {booking.status === 'upcoming' ? 'UPCOMING' : 'COMPLETED'}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Recent Messages */}
+      <div>
+        <h2 className="text-xl font-semibold mb-4">Recent Messages</h2>
+        <div className="space-y-3">
+          {messages.map(message => (
+            <div key={message.id} className="bg-white p-4 rounded-lg shadow-sm flex items-start">
+              <div className="bg-green-500 text-white rounded-full w-10 h-10 flex items-center justify-center mr-4">
+                JS
+              </div>
+              <div>
+                <h3 className="font-medium">{message.sender}</h3>
+                <p className="text-gray-600 text-sm">{message.message}</p>
+                <p className="text-gray-400 text-xs mt-1">{message.time}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </ClientDashboardLayout>
+  );
+};
+
+export default ClientDashboard;

@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -15,6 +16,13 @@ import ClientSignUp from "./pages/ClientSignUp";
 import HandymanSignUp from "./pages/HandymanSignUp";
 import ClientLogin from "./pages/ClientLogin";
 import HandymanLogin from "./pages/HandymanLogin";
+import ClientDashboard from "./pages/client/ClientDashboard";
+import ClientProfile from "./pages/client/ClientProfile";
+import ClientServiceHistory from "./pages/client/ClientServiceHistory";
+import ClientUpcomingBookings from "./pages/client/ClientUpcomingBookings";
+import ClientReviews from "./pages/client/ClientReviews";
+import ClientPaymentBilling from "./pages/client/ClientPaymentBilling";
+import ClientAccountSettings from "./pages/client/ClientAccountSettings";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +44,16 @@ const App = () => (
           <Route path="/signup/handyman" element={<HandymanSignUp />} />
           <Route path="/login/client" element={<ClientLogin />} />
           <Route path="/login/handyman" element={<HandymanLogin />} />
+          
+          {/* Client Dashboard Routes */}
+          <Route path="/client/dashboard" element={<ClientDashboard />} />
+          <Route path="/client/profile" element={<ClientProfile />} />
+          <Route path="/client/service-history" element={<ClientServiceHistory />} />
+          <Route path="/client/upcoming-bookings" element={<ClientUpcomingBookings />} />
+          <Route path="/client/reviews" element={<ClientReviews />} />
+          <Route path="/client/payment-billing" element={<ClientPaymentBilling />} />
+          <Route path="/client/account-settings" element={<ClientAccountSettings />} />
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
