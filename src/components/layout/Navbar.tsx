@@ -2,17 +2,17 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
-// Updated Navbar with the new logo and green background color matching the new logo green
+// Updated Navbar with the new logo and green background color matching the new logo green (#14B22D)
 const Navbar = () => {
   return (
-    <nav className="bg-[#2FA82F] shadow-md border-b border-gray-200">
+    <nav className="bg-[#14B22D] shadow-md border-b border-gray-200">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <Link to="/">
               <img
-                src="/lovable-uploads/b4b2c330-9ddc-426f-a228-4ccd3ea69e56.png"
+                src="/lovable-uploads/3605cbc1-3484-439e-9e60-44ecd68d164e.png"
                 alt="FixFinder logo"
                 className="h-10 w-auto"
                 style={{ background: "transparent" }}
@@ -36,7 +36,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center space-x-3">
             <Link to="/select-role?action=login">
-              <Button variant="outline" className="bg-white text-[#2FA82F] hover:bg-[#a3d7a3] border-gray-300">
+              <Button variant="outline" className="bg-white text-[#14B22D] hover:bg-[#a3d7a3] border-gray-300">
                 Login
               </Button>
             </Link>
@@ -52,4 +52,3 @@ const Navbar = () => {
   );
 };
 export default Navbar;
-

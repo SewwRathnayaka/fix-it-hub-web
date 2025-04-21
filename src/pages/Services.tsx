@@ -17,7 +17,6 @@ const Services = () => {
         <h1 className="text-3xl font-bold mb-6">Our Services</h1>
         {/* Services listing */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Dummy example services: Replace with actual dynamic data if any */}
           {[
             { id: 1, name: "Plumbing", description: "Fix leaks and plumbing issues" },
             { id: 2, name: "Electrical", description: "Electrical repairs and installation" },
