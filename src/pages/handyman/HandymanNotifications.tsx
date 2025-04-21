@@ -4,10 +4,11 @@ import HandymanDashboardLayout from "@/components/handyman/HandymanDashboardLayo
 import HandymanNotificationsTabs from "@/components/handyman/HandymanNotificationsTabs";
 import HandymanNotificationCard from "@/components/handyman/HandymanNotificationCard";
 import { Button } from "@/components/ui/button";
+import { NotificationType } from "@/components/handyman/HandymanNotificationCard";
 
 const notifications = [
   {
-    type: "job",
+    type: "job" as NotificationType,
     title: "New Job Scheduled",
     description:
       "You have a new plumbing job scheduled with Sarah Johnson at 123 Oak Street tomorrow at 9:00 AM.",
@@ -19,7 +20,7 @@ const notifications = [
     ],
   },
   {
-    type: "payment",
+    type: "payment" as NotificationType,
     title: "Payment Received",
     description:
       "You received a payment of $250.00 for Bathroom Renovation from Emily Davis.",
@@ -29,7 +30,7 @@ const notifications = [
     ],
   },
   {
-    type: "review",
+    type: "review" as NotificationType,
     title: "Client Review",
     description:
       'Michael Smith left you a 5-star review for the electrical wiring job. "Great work, very professional and timely."',
@@ -41,7 +42,7 @@ const notifications = [
     ],
   },
   {
-    type: "system",
+    type: "system" as NotificationType,
     title: "System Update",
     description:
       "Fixfinder has been updated to version 2.4.0. Check out the new features including improved scheduling and invoice templates.",
@@ -51,7 +52,7 @@ const notifications = [
     ],
   },
   {
-    type: "subscription",
+    type: "subscription" as NotificationType,
     title: "Subscription Renewal",
     description:
       "Your Professional Plan subscription will renew in 7 days. Your card ending in 4242 will be charged $29.99.",
