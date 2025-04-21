@@ -1,14 +1,13 @@
 
+// Removed Navbar and Footer from ClientSignUp page
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+// Removed Navbar and Footer import
 
 const ClientSignUp = () => {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      {/* Navbar removed */}
       <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-green-50 to-orange-50">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h2 className="text-2xl font-bold text-center mb-2">Sign up as Client</h2>
@@ -70,7 +69,7 @@ const ClientSignUp = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* Footer removed */}
     </div>
   );
 };

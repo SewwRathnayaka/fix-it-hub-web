@@ -1,4 +1,5 @@
 
+// Removed Navbar from HandymanLogin as requested (Footer not present originally)
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";

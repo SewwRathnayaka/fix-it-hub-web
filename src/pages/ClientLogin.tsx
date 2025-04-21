@@ -1,11 +1,11 @@
 
+// Removed Navbar and Footer from ClientLogin page
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
+// Removed Navbar and Footer import
 
 const ClientLogin = () => {
   const navigate = useNavigate();
@@ -57,7 +57,7 @@ const ClientLogin = () => {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      {/* Navbar removed */}
       <div className="flex flex-1 flex-col items-center justify-center bg-gradient-to-r from-green-50 to-orange-50">
         <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
           <h2 className="text-2xl font-bold text-center mb-2">Log in as Client</h2>
@@ -112,7 +112,7 @@ const ClientLogin = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      {/* Footer removed */}
     </div>
   );
 };
