@@ -1,14 +1,17 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
+import ServiceDetailDialog from "@/components/client/ServiceDetailDialog";
 
 const ClientDashboard = () => {
   const navigate = useNavigate();
   const userString = localStorage.getItem("fixfinder_user");
   const user = userString ? JSON.parse(userString) : null;
+  
+  const [selectedService, setSelectedService] = useState<{ name: string; icon: string; } | null>(null);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   const popularServices = [
     { id: 1, name: "Plumbing", icon: "🔧" },
@@ -56,6 +59,11 @@ const ClientDashboard = () => {
     }
   ];
 
+  const handleServiceClick = (service: { name: string; icon: string }) => {
+    setSelectedService(service);
+    setIsDialogOpen(true);
+  };
+
   return (
     <ClientDashboardLayout title={`Welcome back, ${user?.name?.split(' ')[0] || 'Client'}`} subtitle="What can we help you with today?">
       {/* Search Bar */}
@@ -78,7 +86,7 @@ const ClientDashboard = () => {
             <div 
               key={service.id} 
               className="bg-white p-4 rounded-lg shadow-sm flex flex-col items-center justify-center cursor-pointer hover:shadow-md transition-shadow"
-              onClick={() => navigate("/services")}
+              onClick={() => handleServiceClick({ name: service.name, icon: service.icon })}
             >
               <div className="text-3xl mb-2">{service.icon}</div>
               <div className="text-sm font-medium">{service.name}</div>
@@ -86,6 +94,15 @@ const ClientDashboard = () => {
           ))}
         </div>
       </div>
+      
+      {/* Service Detail Dialog */}
+      {selectedService && (
+        <ServiceDetailDialog
+          open={isDialogOpen}
+          onOpenChange={setIsDialogOpen}
+          service={selectedService}
+        />
+      )}
       
       {/* Book a Service Button */}
       <Button 
