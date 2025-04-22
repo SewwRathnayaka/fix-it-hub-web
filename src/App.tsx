@@ -30,6 +30,7 @@ import HandymanNotifications from "./pages/handyman/HandymanNotifications";
 import HandymanAccount from "./pages/handyman/HandymanAccount";
 import HandymanBilling from "./pages/handyman/HandymanBilling";
 import CompleteProfile from "./pages/CompleteProfile";
+import ServiceDetails from "./pages/client/ServiceDetails";
 
 const queryClient = new QueryClient();
 
@@ -50,6 +51,7 @@ const App = () => (
           <Route path="/login/client" element={<ClientLogin />} />
           <Route path="/login/handyman" element={<HandymanLogin />} />
           <Route path="/client/dashboard" element={<ClientDashboard />} />
+          <Route path="/client/service-details" element={<ServiceDetails />} />
           <Route path="/client/profile" element={<ClientProfile />} />
           <Route path="/client/service-history" element={<ClientServiceHistory />} />
           <Route path="/client/upcoming-bookings" element={<ClientUpcomingBookings />} />

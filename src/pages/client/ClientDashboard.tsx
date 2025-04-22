@@ -1,17 +1,12 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
-import ServiceDetailDialog from "@/components/client/ServiceDetailDialog";
 
 const ClientDashboard = () => {
   const navigate = useNavigate();
   const userString = localStorage.getItem("fixfinder_user");
   const user = userString ? JSON.parse(userString) : null;
-  
-  const [selectedService, setSelectedService] = useState<{ name: string; icon: string; } | null>(null);
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
   
   const popularServices = [
     { id: 1, name: "Plumbing", icon: "🔧" },
@@ -60,8 +55,7 @@ const ClientDashboard = () => {
   ];
 
   const handleServiceClick = (service: { name: string; icon: string }) => {
-    setSelectedService(service);
-    setIsDialogOpen(true);
+    navigate('/client/service-details', { state: { service } });
   };
 
   return (
@@ -94,15 +88,6 @@ const ClientDashboard = () => {
           ))}
         </div>
       </div>
-      
-      {/* Service Detail Dialog */}
-      {selectedService && (
-        <ServiceDetailDialog
-          open={isDialogOpen}
-          onOpenChange={setIsDialogOpen}
-          service={selectedService}
-        />
-      )}
       
       {/* Book a Service Button */}
       <Button 
