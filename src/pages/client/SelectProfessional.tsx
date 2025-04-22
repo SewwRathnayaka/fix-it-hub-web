@@ -1,10 +1,10 @@
-
-import React from "react";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Filter } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import BookingDetailsDialog from "@/components/client/BookingDetailsDialog";
 
 interface Professional {
   id: string;
@@ -79,6 +79,7 @@ const SelectProfessional = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const service = location.state?.service;
+  const [showBookingDialog, setShowBookingDialog] = useState(false);
 
   return (
     <ClientDashboardLayout title={`${service?.name || 'Service'} - Select a Professional`} subtitle="">
@@ -163,9 +164,7 @@ const SelectProfessional = () => {
                 <div>
                   <Button 
                     className="bg-orange-500 hover:bg-orange-600"
-                    onClick={() => {
-                      // Add hire logic here
-                    }}
+                    onClick={() => setShowBookingDialog(true)}
                   >
                     Hire Now
                   </Button>
@@ -180,6 +179,11 @@ const SelectProfessional = () => {
           ))}
         </div>
       </div>
+
+      <BookingDetailsDialog
+        open={showBookingDialog}
+        onOpenChange={setShowBookingDialog}
+      />
     </ClientDashboardLayout>
   );
 };
