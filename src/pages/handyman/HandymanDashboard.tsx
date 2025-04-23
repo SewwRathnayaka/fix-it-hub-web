@@ -1,10 +1,63 @@
-
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HandymanDashboardLayout from "@/components/handyman/HandymanDashboardLayout";
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/tabs";
+
+// Sample client requests data
+const clientRequests = [
+  {
+    id: "cr1",
+    title: "Leaky Faucet Repair",
+    client: "Olivia Thompson",
+    address: "12 Green Lane",
+    time: "8:30 AM",
+    note: "Urgent, water leaking continuously.",
+  },
+  {
+    id: "cr2",
+    title: "Ceiling Light Installation",
+    client: "Ethan Clark",
+    address: "59 Oak Road",
+    time: "10:00 AM",
+    note: "Bring step ladder, high ceiling.",
+  },
+];
+
+const todaysSchedule = [
+  {
+    id: "1",
+    title: "Plumbing Repair",
+    client: "Sarah Johnson",
+    address: "123 Oak Street",
+    time: "9:00 AM - 10:30 AM",
+    status: "completed",
+  },
+  {
+    id: "2",
+    title: "Electrical Wiring",
+    client: "Michael Smith",
+    address: "456 Pine Avenue",
+    time: "11:30 AM - 1:00 PM",
+    status: "in progress",
+  },
+  {
+    id: "3",
+    title: "Bathroom Renovation",
+    client: "Emily Davis",
+    address: "789 Maple Road",
+    time: "3:00 PM - 5:00 PM",
+    status: "upcoming",
+  },
+];
 
 const HandymanDashboard = () => {
   const navigate = useNavigate();
+  const [tab, setTab] = useState<"requests" | "today">("requests");
 
   useEffect(() => {
     if (!localStorage.getItem("fixfinder_handyman_registered")) {
@@ -14,10 +67,10 @@ const HandymanDashboard = () => {
 
   return (
     <HandymanDashboardLayout title="Dashboard">
-      {/* You can add the dashboard cards and layout here, matching the UI in your design */}
+      {/* Stat Cards */}
       <div className="w-full flex flex-col md:flex-row gap-6 mb-8">
-        {/* Stat Cards */}
         <div className="flex-1 grid grid-cols-2 md:grid-cols-4 gap-6">
+          
           <div className="bg-white rounded-lg p-6 shadow flex flex-col items-center">
             <div className="text-xs text-gray-500 mb-1">Total Earnings</div>
             <div className="text-xl font-bold">$2,458.50</div>
@@ -41,40 +94,68 @@ const HandymanDashboard = () => {
         </div>
       </div>
 
-      {/* Today's Schedule */}
-      <div className="bg-white rounded-lg shadow mb-8">
-        <div className="p-4 border-b">
-          <h2 className="font-semibold">Today's Schedule</h2>
-        </div>
-        <ul className="divide-y">
-          <li className="flex justify-between items-center p-4">
-            <div>
-              <div className="font-semibold">Plumbing Repair</div>
-              <div className="text-sm text-gray-500">Sarah Johnson &bull; 123 Oak Street</div>
+      {/* TAB SECTION: Client Requests & Today's Schedule */}
+      <Tabs value={tab} onValueChange={(val) => setTab(val as typeof tab)} className="mb-8">
+        <TabsList className="bg-white border rounded-lg shadow p-0">
+          <TabsTrigger value="requests" className="px-6 py-2 font-semibold">Client Requests</TabsTrigger>
+          <TabsTrigger value="today" className="px-6 py-2 font-semibold">Today's Schedule</TabsTrigger>
+        </TabsList>
+        <TabsContent value="requests">
+          <div className="bg-white rounded-lg shadow mt-4">
+            <div className="p-4 border-b">
+              <h2 className="font-semibold">Client Requests</h2>
             </div>
-            <div className="text-sm text-gray-500">9:00 AM - 10:30 AM</div>
-            <span className="bg-green-200 text-green-700 px-3 py-1 rounded-full text-xs ml-2">completed</span>
-          </li>
-          <li className="flex justify-between items-center p-4">
-            <div>
-              <div className="font-semibold">Electrical Wiring</div>
-              <div className="text-sm text-gray-500">Michael Smith &bull; 456 Pine Avenue</div>
+            <ul className="divide-y">
+              {clientRequests.length === 0 ? (
+                <li className="py-6 text-center text-gray-500">No new client requests.</li>
+              ) : (
+                clientRequests.map((req) => (
+                  <li key={req.id} className="flex justify-between items-center p-4">
+                    <div>
+                      <div className="font-semibold">{req.title}</div>
+                      <div className="text-sm text-gray-500">{req.client} &bull; {req.address}</div>
+                      <div className="text-xs text-gray-400">{req.time}</div>
+                      <div className="text-xs text-green-700">{req.note}</div>
+                    </div>
+                    <button className="bg-green-50 text-green-700 px-4 py-1 rounded hover:bg-green-100 text-sm">
+                      View Details
+                    </button>
+                  </li>
+                ))
+              )}
+            </ul>
+          </div>
+        </TabsContent>
+        <TabsContent value="today">
+          {/* Copied/Kept existing Today's Schedule section */}
+          <div className="bg-white rounded-lg shadow mt-4">
+            <div className="p-4 border-b">
+              <h2 className="font-semibold">Today's Schedule</h2>
             </div>
-            <div className="text-sm text-gray-500">11:30 AM - 1:00 PM</div>
-            <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs ml-2">in progress</span>
-          </li>
-          <li className="flex justify-between items-center p-4">
-            <div>
-              <div className="font-semibold">Bathroom Renovation</div>
-              <div className="text-sm text-gray-500">Emily Davis &bull; 789 Maple Road</div>
-            </div>
-            <div className="text-sm text-gray-500">3:00 PM - 5:00 PM</div>
-            <span className="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs ml-2">upcoming</span>
-          </li>
-        </ul>
-      </div>
-
-      {/* Recent Jobs */}
+            <ul className="divide-y">
+              {todaysSchedule.map((job) => (
+                <li key={job.id} className="flex justify-between items-center p-4">
+                  <div>
+                    <div className="font-semibold">{job.title}</div>
+                    <div className="text-sm text-gray-500">{job.client} &bull; {job.address}</div>
+                  </div>
+                  <div className="text-sm text-gray-500">{job.time}</div>
+                  <span className={
+                    job.status === "completed"
+                      ? "bg-green-200 text-green-700 px-3 py-1 rounded-full text-xs ml-2"
+                      : job.status === "in progress"
+                      ? "bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs ml-2"
+                      : "bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs ml-2"
+                  }>
+                    {job.status}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </TabsContent>
+      </Tabs>
+      
       <div className="bg-white rounded-lg shadow">
         <div className="p-4 border-b">
           <h2 className="font-semibold">Recent Jobs</h2>
