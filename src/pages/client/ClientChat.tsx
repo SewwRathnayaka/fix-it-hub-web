@@ -100,7 +100,7 @@ const ClientChat = () => {
             </button>
             <span className="font-semibold text-lg">{booking.handyman}</span>
             {/* Call options */}
-            <button aria-label="Voice Call" className="rounded-full p-2 transition-colors bg-green-600 hover:bg-green-500">
+            <button aria-label="Voice Call" className="rounded-full p-2 transition-colors bg-green-600 hover:bg-green-500 text-zinc-50">
               <PhoneCall className="text-gray-500" size={20} />
             </button>
             <button className="rounded-full p-2 hover:bg-gray-100 transition-colors" aria-label="Video Call">
