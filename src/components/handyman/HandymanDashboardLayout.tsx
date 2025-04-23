@@ -1,10 +1,10 @@
-
-import React, { ReactNode, useRef, useState } from "react";
+import React, { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   Bell,
   LogOut,
   User,
+  Home,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -13,13 +13,6 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 
-interface Props {
-  children: ReactNode;
-  title?: string;
-  subtitle?: string;
-}
-
-// Dummy user info, for profile modal/content only
 const user = {
   name: "John Doe",
   specialty: "Plumbing Specialist",
@@ -44,7 +37,6 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
 
   return (
     <div className="min-h-screen flex w-full bg-[#f5faf7]">
-      {/* Sidebar removed entirely */}
       <main className="flex-1 flex flex-col min-h-screen bg-[#f5faf7]">
         <div className="w-full px-10 py-6 flex items-center justify-between border-b bg-white shadow-sm">
           <span className="text-3xl font-black tracking-tight flex items-center gap-2 mx-auto">
@@ -56,7 +48,13 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
             />
           </span>
           <div className="flex items-center gap-4">
-            {/* Notification button */}
+            <button
+              className="rounded-full p-2 hover:bg-green-100 transition"
+              aria-label="Home"
+              onClick={() => navigate("/")}
+            >
+              <Home className="h-6 w-6 text-green-700" />
+            </button>
             <button
               className="rounded-full p-2 hover:bg-green-100 transition"
               aria-label="Notifications"
@@ -64,7 +62,6 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
             >
               <Bell className="h-6 w-6 text-green-700" />
             </button>
-            {/* Profile Dropdown Menu */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
