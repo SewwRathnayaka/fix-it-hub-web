@@ -145,7 +145,7 @@ const ClientDashboard = () => {
                   <div className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-600">
                     PENDING
                   </div>
-                  <Button variant="secondary" size="sm" onClick={() => handleChat(booking)} className="bg-green-600 hover:bg-green-500">
+                  <Button variant="secondary" size="sm" onClick={() => handleChat(booking)} className="bg-green-600 hover:bg-green-500 rounded-2xl">
                     <MessageSquare className="mr-1" size={16} /> Chat with Handyman
                   </Button>
                 </div>
