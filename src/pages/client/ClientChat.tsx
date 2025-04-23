@@ -1,0 +1,185 @@
+
+import React, { useState } from "react";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
+import { ArrowLeft, Send } from "lucide-react";
+import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
+import { Button } from "@/components/ui/button";
+
+const serviceImage = "/lovable-uploads/dee4bc78-008e-48fe-9a6d-0a851f0e0b58.png";
+
+// Generate local user info (could connect to real user/profile system)
+const currentUser = {
+  name: "You",
+  avatar: "https://randomuser.me/api/portraits/men/1.jpg"
+};
+
+const initialMessages = [
+  {
+    id: 1,
+    sender: "You",
+    timestamp: "11/09/2024 07:28",
+    text: "when will I receive my order?",
+    read: true
+  },
+  {
+    id: 2,
+    sender: "ORDER_INFO",
+    order: {
+      image: serviceImage,
+      service: "Kevin Levrone Gold Creatine 300g, 60 Servings...",
+      orderId: "216164937029662"
+    }
+  },
+  {
+    id: 3,
+    sender: "You",
+    timestamp: "12/09/2024 01:09",
+    text: "how long will it take to resolve the issue",
+    read: true
+  },
+  {
+    id: 4,
+    sender: "ORDER_INFO",
+    order: {
+      image: serviceImage,
+      service: "Kevin Levrone Gold Creatine 300g, 60 Servings...",
+      orderId: "216164937029662"
+    }
+  }
+];
+
+// The chat page expects booking data via location.state.
+const ClientChat = () => {
+  const { state } = useLocation() as { state: { booking: any } };
+  const { bookingId } = useParams();
+  const navigate = useNavigate();
+
+  // For this demo, just use the booking passed in (add null check for robustness)
+  const booking = state?.booking;
+  const [messages, setMessages] = useState<any[]>([
+    {
+      id: "order-info",
+      sender: "ORDER_INFO",
+      order: {
+        image: serviceImage,
+        title: booking?.service || "Service",
+        description: booking?.description || "Service description",
+        date: booking?.date || "",
+        time: booking?.time || "",
+        price: booking?.price || "",
+        bookingId: booking?.id || "",
+        handyman: booking?.handyman || ""
+      }
+    }
+  ]);
+  const [input, setInput] = useState("");
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    setMessages(prev => [
+      ...prev,
+      {
+        id: Date.now(),
+        sender: "You",
+        text: input,
+        timestamp: new Date().toLocaleString(),
+        read: true
+      }
+    ]);
+    setInput("");
+  };
+
+  if (!booking) {
+    // No booking data, go back.
+    return (
+      <div className="flex flex-col items-center justify-center h-96">
+        <p>No booking selected for chat.</p>
+        <Button variant="outline" className="mt-4" onClick={() => navigate(-1)}>
+          Go Back
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <ClientDashboardLayout title={booking.handyman} subtitle="Chat">
+      <div className="max-w-2xl mx-auto relative flex flex-col h-[80vh] border border-gray-200 rounded-xl overflow-hidden bg-[#fafdff] shadow">
+        {/* Header with back arrow */}
+        <div className="flex items-center bg-white px-4 py-3 border-b border-gray-100">
+          <button onClick={() => navigate(-1)} className="mr-2 text-gray-500 hover:text-black">
+            <ArrowLeft size={20} />
+          </button>
+          <span className="font-semibold text-lg">{booking.handyman}</span>
+          {/* Optionally add "• 2 hr" or other status as needed */}
+        </div>
+
+        {/* Message area */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-6 bg-[#fafdff]">
+          {/* Show the initial booking (service) details as a special message */}
+          <div className="flex justify-start">
+            <div className="bg-white rounded-lg shadow p-3 max-w-xs flex flex-col w-full">
+              <div className="font-medium text-base mb-1">Order Information</div>
+              <div className="flex items-center mb-2">
+                <img src={serviceImage} alt="Service" className="w-14 h-14 rounded object-cover mr-3 border" />
+                <div>
+                  <div className="font-semibold">{booking.service}</div>
+                  <div className="text-gray-500 text-xs">{booking.description}</div>
+                </div>
+              </div>
+              <div className="text-xs pt-1 pb-1">
+                <div><span className="font-semibold">Booking ID:</span> {booking.id}</div>
+                <div><span className="font-semibold">Date:</span> {booking.date}</div>
+                <div><span className="font-semibold">Time:</span> {booking.time}</div>
+                <div><span className="font-semibold">Price:</span> {booking.price}</div>
+              </div>
+            </div>
+          </div>
+          {messages
+            .filter(m => m.sender !== "ORDER_INFO")
+            .map(msg => (
+              <div key={msg.id} className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}>
+                <div className={`flex items-end max-w-xs ${msg.sender === "You" ? "flex-row-reverse" : ""}`}>
+                  <img
+                    src={currentUser.avatar}
+                    alt="You"
+                    className="w-8 h-8 object-cover rounded-full ml-2"
+                  />
+                  <div className={`rounded-xl px-4 py-2 ${msg.sender === "You" ? "bg-orange-100 text-gray-700" : "bg-white text-gray-900"} shadow-sm`}>
+                    <div className="text-sm">{msg.text}</div>
+                    <div className="text-right text-xs text-gray-400 mt-1">
+                      {msg.timestamp ? msg.timestamp : ""}
+                      {msg.read && (
+                        <span className="ml-2 text-green-600">Read</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+
+        {/* Bottom bar and input */}
+        <div className="bg-white border-t px-3 py-2 flex items-center gap-2">
+          <Button variant="outline" className="font-medium text-yellow-600 border-yellow-400 bg-yellow-100 mr-2 hover:bg-yellow-200">
+            ★ Rate Service
+          </Button>
+          <form className="flex flex-1 items-center" onSubmit={e => {e.preventDefault(); handleSend();}}>
+            <input
+              type="text"
+              placeholder="Type your message..."
+              className="flex-1 border-none outline-none bg-transparent px-2 text-base"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+            />
+            <Button type="submit" size="icon" className="bg-orange-500 hover:bg-orange-600 text-white ml-2 rounded-full">
+              <Send size={20} />
+            </Button>
+          </form>
+        </div>
+      </div>
+    </ClientDashboardLayout>
+  );
+};
+
+export default ClientChat;

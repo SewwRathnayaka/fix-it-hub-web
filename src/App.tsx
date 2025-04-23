@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -33,6 +32,7 @@ import CompleteProfile from "./pages/CompleteProfile";
 import ServiceDetails from "./pages/client/ServiceDetails";
 import SelectProfessional from "./pages/client/SelectProfessional";
 import HandymanRegistration from "./pages/HandymanRegistration";
+import ClientChat from "./pages/client/ClientChat";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +61,7 @@ const App = () => (
           <Route path="/client/payment-billing" element={<ClientPaymentBilling />} />
           <Route path="/client/account-settings" element={<ClientAccountSettings />} />
           <Route path="/client/complete-profile" element={<CompleteProfile />} />
+          <Route path="/client/chat/:bookingId" element={<ClientChat />} />
           <Route path="/handyman/dashboard" element={<HandymanDashboard />} />
           <Route path="/handyman/schedule" element={<HandymanSchedule />} />
           <Route path="/handyman/jobs" element={<HandymanJobs />} />

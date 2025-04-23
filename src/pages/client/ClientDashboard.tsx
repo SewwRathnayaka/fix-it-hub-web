@@ -1,3 +1,4 @@
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search, MessageSquare } from "lucide-react";
@@ -32,7 +33,8 @@ const ClientDashboard = () => {
     date: "Jan 23",
     time: "2:00 PM",
     status: "upcoming",
-    price: "$125.00"
+    price: "$125.00",
+    description: "Fix leaking kitchen sink",
   }, {
     id: 2,
     service: "Electrical Maintenance",
@@ -40,7 +42,8 @@ const ClientDashboard = () => {
     date: "Jan 25",
     time: "10:00 AM",
     status: "pending",
-    price: "$95.00"
+    price: "$95.00",
+    description: "Check and repair faulty wiring",
   }, {
     id: 3,
     service: "Painting",
@@ -48,7 +51,8 @@ const ClientDashboard = () => {
     date: "Jan 18",
     time: "10:30 AM",
     status: "completed",
-    price: "$350.00"
+    price: "$350.00",
+    description: "Paint living room walls",
   }];
   const messages = [{
     id: 1,
@@ -67,8 +71,8 @@ const ClientDashboard = () => {
     });
   };
   const handleChat = (booking: typeof bookings[number]) => {
-    // Placeholder: you can add chat navigation here
-    alert(`Chat with ${booking.handyman} coming soon!`);
+    // Go to chat with handyman for this booking
+    navigate(`/client/chat/${booking.id}`, { state: { booking } });
   };
 
   // Group bookings by status
@@ -123,8 +127,9 @@ const ClientDashboard = () => {
                   <div className={`px-2 py-1 rounded-full text-xs ${booking.status === 'upcoming' ? 'bg-yellow-100 text-yellow-700' : ''}`}>
                     UPCOMING
                   </div>
+                  {/* Chat Button */}
                   <Button variant="secondary" size="sm" onClick={() => handleChat(booking)} className="bg-green-600 hover:bg-green-500 rounded-2xl">
-                    <MessageSquare className="mr-1" size={16} /> Chat with Handyman
+                    <MessageSquare className="mr-1" size={16} /> Chat
                   </Button>
                 </div>
               </div>)}
@@ -145,8 +150,9 @@ const ClientDashboard = () => {
                   <div className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-600">
                     PENDING
                   </div>
+                  {/* Chat Button */}
                   <Button variant="secondary" size="sm" onClick={() => handleChat(booking)} className="bg-green-600 hover:bg-green-500 rounded-2xl">
-                    <MessageSquare className="mr-1" size={16} /> Chat with Handyman
+                    <MessageSquare className="mr-1" size={16} /> Chat
                   </Button>
                 </div>
               </div>)}
