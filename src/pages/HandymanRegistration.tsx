@@ -1,8 +1,8 @@
+
 import React, { useState, ChangeEvent, FormEvent } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { ArrowRight, ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 
 const REG_STEPS = [
   "Personal Information",
@@ -69,155 +69,6 @@ const StepIndicator = ({ step }: { step: number }) => (
         )}
       </React.Fragment>
     ))}
-  </div>
-);
-
-// UPDATED: Step0 matches your screenshot
-const Step0 = ({
-  data,
-  onChange,
-  onSubmit,
-  loading,
-}: {
-  data: any;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: FormEvent) => void;
-  loading: boolean;
-}) => (
-  <div className="min-h-screen flex flex-col bg-gradient-to-r from-orange-50 to-green-50">
-    <div className="flex flex-1 flex-col items-center justify-center">
-      <form
-        onSubmit={onSubmit}
-        className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md relative"
-        autoComplete="off"
-      >
-        <button
-          type="button"
-          onClick={() => window.history.back()}
-          aria-label="Back"
-          className="absolute top-4 left-4 p-1 rounded hover:bg-gray-200 transition"
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <h2 className="text-2xl font-bold text-center mb-2">
-          Sign up as Handyman
-        </h2>
-        <p className="mb-2 text-center text-gray-600">
-          Share your expertise and start receiving job requests!
-        </p>
-        <div className="mb-4">
-          <label
-            htmlFor="name"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Full Name
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="John Doe"
-            autoComplete="name"
-            value={data.name}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="johndoe@email.com"
-            autoComplete="email"
-            value={data.email}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="Enter password"
-            value={data.password}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="field"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Working Field
-          </label>
-          <input
-            id="field"
-            name="field"
-            type="text"
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="e.g. Plumbing, Carpentry, Electrical"
-            value={data.field}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <div className="mb-4">
-          <label
-            htmlFor="experience"
-            className="block text-sm font-medium text-gray-700 mb-1"
-          >
-            Experience (years)
-          </label>
-          <input
-            id="experience"
-            name="experience"
-            type="number"
-            min={0}
-            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
-            placeholder="e.g. 5"
-            value={data.experience}
-            onChange={onChange}
-            required
-          />
-        </div>
-        <Button
-          className="w-full bg-orange-500 hover:bg-orange-600 text-white mt-2"
-          type="submit"
-          disabled={loading}
-        >
-          {loading ? "Processing..." : "Sign up"}
-        </Button>
-        <div className="text-center mt-4">
-          <p className="text-sm">
-            Already have an account?{" "}
-            <Link
-              to="/login/handyman"
-              className="text-orange-600 hover:underline"
-            >
-              Log in as handyman
-            </Link>
-          </p>
-        </div>
-      </form>
-    </div>
   </div>
 );
 
@@ -564,24 +415,16 @@ const Step4 = ({
 
 const initialForm = {
   name: "",
-  email: "",
-  password: "",
-  field: "",
-  experience: "",
-  // The rest used in later steps:
   nic: "",
   address: "",
   contact: "",
+  email: "",
+  experience: "",
 };
 
 const HandymanRegistration = () => {
   const [step, setStep] = useState(0);
-  const [loading, setLoading] = useState(false);
-
-  // Step 0 (simple form)
-  const [mainForm, setMainForm] = useState(initialForm);
-
-  // keep all other form state (photo, services, etc)
+  const [personal, setPersonal] = useState(initialForm);
   const [photo, setPhoto] = useState<File | null>(null);
   const [services, setServices] = useState<string[]>([]);
   const [otherService, setOtherService] = useState("");
@@ -596,26 +439,15 @@ const HandymanRegistration = () => {
   const [otherPay, setOtherPay] = useState("");
   const navigate = useNavigate();
 
-  // Handlers for step 0
-  const handleMainChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMainForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  // Redirect if registration not started
+  React.useEffect(() => {
+    // Optionally check localStorage for "handyman-registered" flag
+    // If so, redirect to dashboard
+    // Not implemented here; registration is always required for this demo
+  }, []);
 
-  const handleMainSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setStep(1); // go to photo upload etc
-      setLoading(false);
-    }, 500);
-  };
-
-  // keep rest of handlers for multistep flow as already implemented
   const handlePersonalChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setMainForm({ ...mainForm, [e.target.name]: e.target.value });
+    setPersonal({ ...personal, [e.target.name]: e.target.value });
   };
 
   const handlePhoto = (e: ChangeEvent<HTMLInputElement>) => {
@@ -671,32 +503,26 @@ const HandymanRegistration = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+    // Submit form or save to backend.
+    // Here: set localStorage and go to dashboard.
     localStorage.setItem("fixfinder_handyman_registered", "1");
     navigate("/handyman/dashboard");
   };
 
-  // Show different step UIs
-  if (step === 0) {
-    return (
-      <Step0
-        data={mainForm}
-        onChange={handleMainChange}
-        onSubmit={handleMainSubmit}
-        loading={loading}
-      />
-    );
-  }
-
-  // Subsequent steps = old registration steps reused
   return (
     <div className="min-h-screen w-full bg-[#f6f7fa] flex flex-col items-center py-8">
       <div className="w-full max-w-xl bg-white rounded-lg shadow p-6 md:p-10 mt-6">
         <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-900">Handyman Registration</h2>
         <StepIndicator step={step} />
         <form onSubmit={handleSubmit}>
+          {step === 0 && (
+            <Step1 data={personal} onChange={handlePersonalChange} />
+          )}
+
           {step === 1 && (
             <Step2 photo={photo} onPhoto={handlePhoto} />
           )}
+
           {step === 2 && (
             <Step3
               services={services}
@@ -705,9 +531,10 @@ const HandymanRegistration = () => {
               onOtherChange={handleOtherServiceChange}
             />
           )}
+
           {step === 3 && (
             <Step4
-              data={mainForm}
+              data={personal}
               onInputChange={handlePersonalChange}
               certs={certs}
               onCertChange={handleCertChange}
@@ -734,7 +561,7 @@ const HandymanRegistration = () => {
 
           {/* Navigation buttons */}
           <div className="flex justify-between mt-8">
-            {step > 1 ? (
+            {step > 0 ? (
               <button
                 type="button"
                 onClick={handleBack}
