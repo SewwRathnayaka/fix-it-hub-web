@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
@@ -105,7 +106,7 @@ const ServiceDetails = () => {
             <Button 
               className="bg-orange-500 hover:bg-orange-600"
               onClick={() => {
-                navigate('/client/select-professional', { state: { service } });
+                // Add booking logic here
               }}
             >
               Book Now
