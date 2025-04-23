@@ -1,10 +1,11 @@
-
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import HandymanDashboardLayout from "@/components/handyman/HandymanDashboardLayout";
 import HandymanNotificationsTabs from "@/components/handyman/HandymanNotificationsTabs";
 import HandymanNotificationCard from "@/components/handyman/HandymanNotificationCard";
 import { Button } from "@/components/ui/button";
 import { NotificationType } from "@/components/handyman/HandymanNotificationCard";
+import { Home } from "lucide-react";
 
 const notifications = [
   {
@@ -66,9 +67,13 @@ const notifications = [
 
 const HandymanNotifications = () => {
   const [tab, setTab] = useState("all");
+  const navigate = useNavigate();
 
   return (
-    <HandymanDashboardLayout title="Notifications">
+    <HandymanDashboardLayout 
+      title="Notifications" 
+      homeButtonHandler={() => navigate("/handyman/dashboard")}
+    >
       <div className="flex justify-between items-center">
         <HandymanNotificationsTabs value={tab} onChange={setTab} />
         <div className="flex space-x-2">

@@ -1,4 +1,3 @@
-
 import React, { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -18,6 +17,7 @@ interface Props {
   children: ReactNode;
   title?: string;
   subtitle?: string;
+  homeButtonHandler?: () => void;
 }
 
 const user = {
@@ -38,9 +38,16 @@ const menuItems = [
   { label: "Billing", route: "/handyman/billing" },
 ];
 
-const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
+const HandymanDashboardLayout = ({ 
+  children, 
+  title, 
+  subtitle, 
+  homeButtonHandler 
+}: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const handleHomeClick = homeButtonHandler || (() => navigate("/"));
 
   return (
     <div className="min-h-screen flex w-full bg-[#f5faf7]">
@@ -58,7 +65,7 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
             <button
               className="rounded-full p-2 hover:bg-green-100 transition"
               aria-label="Home"
-              onClick={() => navigate("/")}
+              onClick={handleHomeClick}
             >
               <Home className="h-6 w-6 text-green-700" />
             </button>
