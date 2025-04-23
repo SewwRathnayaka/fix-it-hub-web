@@ -13,40 +13,10 @@ const currentUser = {
   avatar: "https://randomuser.me/api/portraits/men/1.jpg"
 };
 
-const initialMessages = [
-  {
-    id: 1,
-    sender: "You",
-    timestamp: "11/09/2024 07:28",
-    text: "when will I receive my order?",
-    read: true
-  },
-  {
-    id: 2,
-    sender: "ORDER_INFO",
-    order: {
-      image: serviceImage,
-      service: "Kevin Levrone Gold Creatine 300g, 60 Servings...",
-      orderId: "216164937029662"
-    }
-  },
-  {
-    id: 3,
-    sender: "You",
-    timestamp: "12/09/2024 01:09",
-    text: "how long will it take to resolve the issue",
-    read: true
-  },
-  {
-    id: 4,
-    sender: "ORDER_INFO",
-    order: {
-      image: serviceImage,
-      service: "Kevin Levrone Gold Creatine 300g, 60 Servings...",
-      orderId: "216164937029662"
-    }
-  }
-];
+const handymanUser = {
+  name: "Handyman",
+  avatar: "https://randomuser.me/api/portraits/men/32.jpg"
+};
 
 // The chat page expects booking data via location.state.
 const ClientChat = () => {
@@ -56,6 +26,8 @@ const ClientChat = () => {
 
   // For this demo, just use the booking passed in (add null check for robustness)
   const booking = state?.booking;
+
+  // Provide fake conversation messages, order info always at the top
   const [messages, setMessages] = useState<any[]>([
     {
       id: "order-info",
@@ -70,8 +42,37 @@ const ClientChat = () => {
         bookingId: booking?.id || "",
         handyman: booking?.handyman || ""
       }
+    },
+    {
+      id: 1,
+      sender: "You",
+      text: "Hi, I just wanted to check if you have all the details for my booking?",
+      timestamp: "11/09/2024 09:15",
+      read: true
+    },
+    {
+      id: 2,
+      sender: "Handyman",
+      text: "Hello! Yes, I see your booking for the service. I’ll be there on time.",
+      timestamp: "11/09/2024 09:16",
+      read: true
+    },
+    {
+      id: 3,
+      sender: "You",
+      text: "Great! Let me know if you need any information from my side.",
+      timestamp: "11/09/2024 09:17",
+      read: true
+    },
+    {
+      id: 4,
+      sender: "Handyman",
+      text: "Thanks! I will bring all necessary tools. Looking forward to it.",
+      timestamp: "11/09/2024 09:18",
+      read: true
     }
   ]);
+
   const [input, setInput] = useState("");
 
   const handleSend = () => {
@@ -110,7 +111,6 @@ const ClientChat = () => {
             <ArrowLeft size={20} />
           </button>
           <span className="font-semibold text-lg">{booking.handyman}</span>
-          {/* Optionally add "• 2 hr" or other status as needed */}
         </div>
 
         {/* Message area */}
@@ -140,8 +140,8 @@ const ClientChat = () => {
               <div key={msg.id} className={`flex ${msg.sender === "You" ? "justify-end" : "justify-start"}`}>
                 <div className={`flex items-end max-w-xs ${msg.sender === "You" ? "flex-row-reverse" : ""}`}>
                   <img
-                    src={currentUser.avatar}
-                    alt="You"
+                    src={msg.sender === "You" ? currentUser.avatar : handymanUser.avatar}
+                    alt={msg.sender}
                     className="w-8 h-8 object-cover rounded-full ml-2"
                   />
                   <div className={`rounded-xl px-4 py-2 ${msg.sender === "You" ? "bg-orange-100 text-gray-700" : "bg-white text-gray-900"} shadow-sm`}>
@@ -183,3 +183,4 @@ const ClientChat = () => {
 };
 
 export default ClientChat;
+
