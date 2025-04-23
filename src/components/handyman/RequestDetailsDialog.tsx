@@ -1,4 +1,3 @@
-
 import {
   Dialog,
   DialogContent,
@@ -25,7 +24,6 @@ interface RequestDetailsProps {
 const RequestDetailsDialog = ({ open, onOpenChange, request }: RequestDetailsProps) => {
   const navigate = useNavigate();
 
-  // Mock photos array - in a real app, these would come from the request object
   const photos = [
     "/lovable-uploads/dee4bc78-008e-48fe-9a6d-0a851f0e0b58.png",
     "/lovable-uploads/f1ac4051-e1a6-4dde-a3f7-f065c2486f55.png",

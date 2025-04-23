@@ -34,6 +34,7 @@ import SelectProfessional from "./pages/client/SelectProfessional";
 import HandymanRegistration from "./pages/HandymanRegistration";
 import ClientChat from "./pages/client/ClientChat";
 import ServiceCatalog from "./pages/client/ServiceCatalog";
+import HandymanChat from "./pages/handyman/HandymanChat";
 
 const queryClient = new QueryClient();
 
@@ -75,6 +76,7 @@ const App = () => (
           <Route path="/client/select-professional" element={<SelectProfessional />} />
           <Route path="/handyman/registration" element={<HandymanRegistration />} />
           <Route path="/client/service-catalog" element={<ServiceCatalog />} />
+          <Route path="/handyman/chat/:requestId" element={<HandymanChat />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
