@@ -1,3 +1,4 @@
+
 import React, { ReactNode } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -12,6 +13,12 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
+
+interface Props {
+  children: ReactNode;
+  title?: string;
+  subtitle?: string;
+}
 
 const user = {
   name: "John Doe",
