@@ -1,11 +1,12 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowLeft, Calendar, Clock, MapPin, Upload } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { toast } from "@/hooks/use-toast";
 
 interface BookingDetailsDialogProps {
   open: boolean;
@@ -13,6 +14,34 @@ interface BookingDetailsDialogProps {
 }
 
 const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps) => {
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [address, setAddress] = useState("");
+  const [description, setDescription] = useState("");
+  
+  const handleContinue = () => {
+    // Basic validation
+    if (!date || !time || !address.trim() || !description.trim()) {
+      toast({
+        title: "Missing information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
+    // Submit booking data
+    console.log("Booking details:", { date, time, address, description });
+    
+    toast({
+      title: "Booking submitted!",
+      description: "Your booking details have been sent.",
+    });
+    
+    // Close the dialog
+    onOpenChange(false);
+  };
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl">
@@ -35,6 +64,8 @@ const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps)
                   type="date" 
                   placeholder="mm/dd/yyyy"
                   className="pl-10"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
                 />
                 <Calendar className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               </div>
@@ -43,6 +74,8 @@ const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps)
                   type="time"
                   placeholder="Select time"
                   className="pl-10"
+                  value={time}
+                  onChange={(e) => setTime(e.target.value)}
                 />
                 <Clock className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
               </div>
@@ -56,6 +89,8 @@ const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps)
                 type="text"
                 placeholder="Enter your complete address"
                 className="pl-10"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
               <MapPin className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
             </div>
@@ -66,6 +101,8 @@ const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps)
             <Textarea 
               placeholder="Please describe the issue you're facing..."
               className="min-h-[100px]"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
@@ -85,7 +122,10 @@ const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps)
             <Button variant="outline" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>
-            <Button className="bg-orange-500 hover:bg-orange-600">
+            <Button 
+              className="bg-orange-500 hover:bg-orange-600"
+              onClick={handleContinue}
+            >
               Continue to Review
             </Button>
           </div>
