@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   SidebarProvider,
@@ -13,28 +13,21 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import {
-  LayoutDashboard,
-  Calendar,
-  Briefcase,
-  Users,
-  Settings,
-  User,
   Bell,
-  Cog,
-  CreditCard,
   LogOut,
+  User,
 } from "lucide-react";
 
 const sidebarNav = [
-  { label: "Dashboard", icon: LayoutDashboard, route: "/handyman/dashboard" },
-  { label: "Schedule", icon: Calendar, route: "/handyman/schedule" },
-  { label: "Jobs", icon: Briefcase, route: "/handyman/jobs" },
-  { label: "Clients", icon: Users, route: "/handyman/clients" },
-  { label: "Settings", icon: Settings, route: "/handyman/settings" },
-  { label: "Profile", icon: User, route: "/handyman/profile" },
-  { label: "Notifications", icon: Bell, route: "/handyman/notifications" },
-  { label: "Account", icon: Cog, route: "/handyman/account" },
-  { label: "Billing", icon: CreditCard, route: "/handyman/billing" },
+  { label: "Dashboard", icon: "menu", route: "/handyman/dashboard" },
+  { label: "Schedule", icon: "menu", route: "/handyman/schedule" },
+  { label: "Jobs", icon: "menu", route: "/handyman/jobs" },
+  { label: "Clients", icon: "menu", route: "/handyman/clients" },
+  { label: "Settings", icon: "menu", route: "/handyman/settings" },
+  { label: "Profile", icon: "menu", route: "/handyman/profile" },
+  { label: "Notifications", icon: "menu", route: "/handyman/notifications" },
+  { label: "Account", icon: "menu", route: "/handyman/account" },
+  { label: "Billing", icon: "menu", route: "/handyman/billing" },
 ];
 
 interface Props {
@@ -54,49 +47,175 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [showSidebarMenu, setShowSidebarMenu] = useState(false);
+
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-[#f5faf7]">
         <Sidebar>
-          <SidebarContent>
-            {/* User section REMOVED as requested. */}
-            <SidebarGroup>
-              <SidebarGroupLabel>Menu</SidebarGroupLabel>
-              <SidebarGroupContent>
-                <SidebarMenu>
-                  {sidebarNav.map(item => (
-                    <SidebarMenuItem key={item.label}>
+          {showSidebarMenu && (
+            <SidebarContent>
+              <SidebarGroup>
+                <SidebarGroupLabel>Menu</SidebarGroupLabel>
+                <SidebarGroupContent>
+                  <SidebarMenu>
+                    {/* Update to use only icons allowed by lucide-react-icons */}
+                    <SidebarMenuItem>
                       <SidebarMenuButton
                         asChild
-                        isActive={location.pathname === item.route}
-                        onClick={() => navigate(item.route)}
+                        isActive={location.pathname === "/handyman/dashboard"}
+                        onClick={() => {
+                          navigate("/handyman/dashboard");
+                          setShowSidebarMenu(false);
+                        }}
                       >
-                        <div className="flex items-center gap-2 cursor-pointer w-full">
-                          <item.icon className="h-5 w-5" />
-                          <span>{item.label}</span>
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Dashboard</span>
                         </div>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
-                  ))}
-                  <SidebarMenuItem>
-                    <SidebarMenuButton
-                      asChild
-                      variant="outline"
-                      onClick={() => {
-                        localStorage.removeItem("fixfinder_user");
-                        navigate("/");
-                      }}
-                    >
-                      <div className="flex items-center gap-2 cursor-pointer w-full text-red-500">
-                        <LogOut className="h-5 w-5" />
-                        <span>Logout</span>
-                      </div>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                </SidebarMenu>
-              </SidebarGroupContent>
-            </SidebarGroup>
-          </SidebarContent>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/schedule"}
+                        onClick={() => {
+                          navigate("/handyman/schedule");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Schedule</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/jobs"}
+                        onClick={() => {
+                          navigate("/handyman/jobs");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Jobs</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/clients"}
+                        onClick={() => {
+                          navigate("/handyman/clients");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Clients</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/settings"}
+                        onClick={() => {
+                          navigate("/handyman/settings");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Settings</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/profile"}
+                        onClick={() => {
+                          navigate("/handyman/profile");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Profile</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/notifications"}
+                        onClick={() => {
+                          navigate("/handyman/notifications");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Notifications</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/account"}
+                        onClick={() => {
+                          navigate("/handyman/account");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Account</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        isActive={location.pathname === "/handyman/billing"}
+                        onClick={() => {
+                          navigate("/handyman/billing");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full">
+                          <User className="h-5 w-5" />
+                          <span>Billing</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                    <SidebarMenuItem>
+                      <SidebarMenuButton
+                        asChild
+                        variant="outline"
+                        onClick={() => {
+                          localStorage.removeItem("fixfinder_user");
+                          navigate("/");
+                          setShowSidebarMenu(false);
+                        }}
+                      >
+                        <div className="flex items-center gap-2 w-full text-red-500">
+                          <LogOut className="h-5 w-5" />
+                          <span>Logout</span>
+                        </div>
+                      </SidebarMenuButton>
+                    </SidebarMenuItem>
+                  </SidebarMenu>
+                </SidebarGroupContent>
+              </SidebarGroup>
+            </SidebarContent>
+          )}
         </Sidebar>
         <main className="flex-1 flex flex-col min-h-screen bg-[#f5faf7]">
           <div className="w-full px-10 py-6 flex items-center justify-between border-b bg-white shadow-sm">
@@ -121,7 +240,7 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
               <button
                 className="rounded-full p-1 border-2 border-green-300 hover:border-green-500 transition"
                 aria-label="Profile"
-                onClick={() => navigate("/handyman/profile", { state: { user } })}
+                onClick={() => setShowSidebarMenu(show => !show)}
               >
                 <img
                   src={user.avatar}
