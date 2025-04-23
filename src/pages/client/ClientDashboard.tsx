@@ -88,9 +88,9 @@ const ClientDashboard = () => {
 
   return <ClientDashboardLayout title={`Welcome back, ${user?.name?.split(' ')[0] || 'Client'}`} subtitle="What can we help you with today?" showHomeIcon={false}>
       <div className="mb-8 relative">
-        <div className="relative">
-          <input type="text" placeholder="Search Services" className="w-full md:w-96 bg-white rounded-full py-2 px-6 pr-12 shadow-sm border border-gray-200" />
-          <Search className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+        <div className="relative w-full md:w-96">
+          <input type="text" placeholder="Search Services" className="w-full bg-white rounded-full py-2 px-6 pr-10 shadow-sm border border-gray-200" />
+          <Search className="absolute top-1/2 right-3 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
         </div>
       </div>
       

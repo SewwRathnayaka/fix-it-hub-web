@@ -29,6 +29,10 @@ const ClientRequests = () => {
       <div className="p-4 border-b">
         <h2 className="font-semibold">Client Requests</h2>
       </div>
+      <div className="p-4 bg-red-50 border-b border-red-100">
+        <span className="text-red-600 font-semibold text-sm">NEW</span>
+        <p className="text-red-600 text-sm mt-1">Please review and accept client's requests</p>
+      </div>
       <ul className="divide-y">
         {clientRequests.length === 0 ? (
           <li className="py-6 text-center text-gray-500">No new client requests.</li>

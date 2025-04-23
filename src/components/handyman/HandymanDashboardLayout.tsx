@@ -46,6 +46,7 @@ const HandymanDashboardLayout = ({
 }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isOnDashboard = location.pathname === "/handyman/dashboard";
 
   const handleHomeClick = homeButtonHandler || (() => navigate("/"));
 
@@ -62,13 +63,15 @@ const HandymanDashboardLayout = ({
             />
           </span>
           <div className="flex items-center gap-4">
-            <button
-              className="rounded-full p-2 hover:bg-green-100 transition"
-              aria-label="Home"
-              onClick={handleHomeClick}
-            >
-              <Home className="h-6 w-6 text-green-700" />
-            </button>
+            {!isOnDashboard && (
+              <button
+                className="rounded-full p-2 hover:bg-green-100 transition"
+                aria-label="Home"
+                onClick={() => navigate("/handyman/dashboard")}
+              >
+                <Home className="h-6 w-6 text-green-700" />
+              </button>
+            )}
             <button
               className="rounded-full p-2 hover:bg-green-100 transition"
               aria-label="Notifications"
