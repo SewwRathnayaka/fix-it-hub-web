@@ -1,13 +1,12 @@
 
 import React, { useState } from "react";
 import { useLocation, useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Send } from "lucide-react";
+import { ArrowLeft, Send, PhoneCall, Video, Smile } from "lucide-react";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
 import { Button } from "@/components/ui/button";
 
 const serviceImage = "/lovable-uploads/dee4bc78-008e-48fe-9a6d-0a851f0e0b58.png";
 
-// Generate local user info (could connect to real user/profile system)
 const currentUser = {
   name: "You",
   avatar: "https://randomuser.me/api/portraits/men/1.jpg"
@@ -72,7 +71,6 @@ const ClientChat = () => {
       read: true
     }
   ]);
-
   const [input, setInput] = useState("");
 
   const handleSend = () => {
@@ -105,12 +103,25 @@ const ClientChat = () => {
   return (
     <ClientDashboardLayout title={booking.handyman} subtitle="Chat">
       <div className="max-w-2xl mx-auto relative flex flex-col h-[80vh] border border-gray-200 rounded-xl overflow-hidden bg-[#fafdff] shadow">
-        {/* Header with back arrow */}
-        <div className="flex items-center bg-white px-4 py-3 border-b border-gray-100">
-          <button onClick={() => navigate(-1)} className="mr-2 text-gray-500 hover:text-black">
-            <ArrowLeft size={20} />
-          </button>
-          <span className="font-semibold text-lg">{booking.handyman}</span>
+        {/* Header with back arrow, name, call options and Rate Service button */}
+        <div className="flex items-center bg-white px-4 py-3 border-b border-gray-100 justify-between">
+          <div className="flex items-center gap-2">
+            <button onClick={() => navigate(-1)} className="text-gray-500 hover:text-black">
+              <ArrowLeft size={20} />
+            </button>
+            <span className="font-semibold text-lg">{booking.handyman}</span>
+            {/* Call options */}
+            <button className="rounded-full p-2 hover:bg-gray-100 transition-colors" aria-label="Voice Call">
+              <PhoneCall className="text-gray-500" size={20} />
+            </button>
+            <button className="rounded-full p-2 hover:bg-gray-100 transition-colors" aria-label="Video Call">
+              <Video className="text-gray-500" size={20} />
+            </button>
+          </div>
+          {/* Rate Service Button */}
+          <Button variant="outline" className="font-medium text-yellow-600 border-yellow-400 bg-yellow-100 hover:bg-yellow-200">
+            ★ Rate Service
+          </Button>
         </div>
 
         {/* Message area */}
@@ -161,9 +172,15 @@ const ClientChat = () => {
 
         {/* Bottom bar and input */}
         <div className="bg-white border-t px-3 py-2 flex items-center gap-2">
-          <Button variant="outline" className="font-medium text-yellow-600 border-yellow-400 bg-yellow-100 mr-2 hover:bg-yellow-200">
-            ★ Rate Service
-          </Button>
+          {/* Add emoji icon on the left */}
+          <button
+            type="button"
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+            tabIndex={-1}
+            aria-label="Add emoji"
+          >
+            <Smile className="text-gray-400" size={22} />
+          </button>
           <form className="flex flex-1 items-center" onSubmit={e => {e.preventDefault(); handleSend();}}>
             <input
               type="text"
