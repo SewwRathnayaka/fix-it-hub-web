@@ -105,7 +105,7 @@ const ClientDashboard = () => {
       </div>
       
       {/* Book a Service Button */}
-      <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6 mb-8" onClick={() => navigate("/services")}>
+      <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6 mb-8" onClick={() => navigate("/client/service-catalog")}>
         Book a Service
       </Button>
       

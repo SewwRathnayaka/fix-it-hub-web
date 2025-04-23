@@ -33,6 +33,7 @@ import ServiceDetails from "./pages/client/ServiceDetails";
 import SelectProfessional from "./pages/client/SelectProfessional";
 import HandymanRegistration from "./pages/HandymanRegistration";
 import ClientChat from "./pages/client/ClientChat";
+import ServiceCatalog from "./pages/client/ServiceCatalog";
 
 const queryClient = new QueryClient();
 
@@ -73,6 +74,7 @@ const App = () => (
           <Route path="/handyman/billing" element={<HandymanBilling />} />
           <Route path="/client/select-professional" element={<SelectProfessional />} />
           <Route path="/handyman/registration" element={<HandymanRegistration />} />
+          <Route path="/client/service-catalog" element={<ServiceCatalog />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
