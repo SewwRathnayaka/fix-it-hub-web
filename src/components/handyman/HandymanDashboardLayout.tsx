@@ -43,27 +43,23 @@ interface Props {
   subtitle?: string;
 }
 
+// Dummy user info, for profile modal/content only
+const user = {
+  name: "John Doe",
+  specialty: "Plumbing Specialist",
+  avatar: "https://randomuser.me/api/portraits/men/34.jpg",
+};
+
 const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
-
-  // Dummy user info, can be replaced with real data
-  const user = {
-    name: "John Doe",
-    specialty: "Plumbing Specialist",
-    avatar: "https://randomuser.me/api/portraits/men/34.jpg",
-  };
 
   return (
     <SidebarProvider>
       <div className="min-h-screen flex w-full bg-[#f5faf7]">
         <Sidebar>
           <SidebarContent>
-            <div className="px-6 pt-8 pb-10 flex flex-col items-center gap-2">
-              <img src={user.avatar} alt="Handyman avatar" className="w-16 h-16 rounded-full object-cover border border-green-200" />
-              <span className="font-bold text-lg">{user.name}</span>
-              <span className="text-sm text-gray-600">{user.specialty}</span>
-            </div>
+            {/* User section REMOVED as requested. */}
             <SidebarGroup>
               <SidebarGroupLabel>Menu</SidebarGroupLabel>
               <SidebarGroupContent>
@@ -112,7 +108,28 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
                 style={{ maxWidth: 140 }}
               />
             </span>
-            {/* Optionally, notification and profile icons */}
+            <div className="flex items-center gap-4">
+              {/* Notification button */}
+              <button
+                className="rounded-full p-2 hover:bg-green-100 transition"
+                aria-label="Notifications"
+                onClick={() => navigate("/handyman/notifications")}
+              >
+                <Bell className="h-6 w-6 text-green-700" />
+              </button>
+              {/* Profile button */}
+              <button
+                className="rounded-full p-1 border-2 border-green-300 hover:border-green-500 transition"
+                aria-label="Profile"
+                onClick={() => navigate("/handyman/profile", { state: { user } })}
+              >
+                <img
+                  src={user.avatar}
+                  alt="Handyman avatar"
+                  className="h-8 w-8 rounded-full object-cover"
+                />
+              </button>
+            </div>
           </div>
           <div className="px-10 pt-8 pb-2">
             {title && <h1 className="text-2xl font-bold text-green-900">{title}</h1>}
@@ -126,4 +143,3 @@ const HandymanDashboardLayout = ({ children, title, subtitle }: Props) => {
 };
 
 export default HandymanDashboardLayout;
-
