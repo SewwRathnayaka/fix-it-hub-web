@@ -73,7 +73,7 @@ const ServiceShowcase = () => {
         </div>
         
         <div className="flex justify-center mt-12">
-          <Link to="/services">
+          <Link to="/services#top">
             <Button className="bg-orange-500 hover:bg-orange-600 text-white px-8">
               View All Services
             </Button>

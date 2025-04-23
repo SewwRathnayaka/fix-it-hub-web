@@ -1,12 +1,17 @@
-
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Search, MessageSquare } from "lucide-react";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
+import BookingPopup from "@/components/client/BookingPopup";
+import { useState } from "react";
+
 const ClientDashboard = () => {
   const navigate = useNavigate();
   const userString = localStorage.getItem("fixfinder_user");
   const user = userString ? JSON.parse(userString) : null;
+  const [selectedBooking, setSelectedBooking] = useState<typeof bookings[number] | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
   const popularServices = [{
     id: 1,
     name: "Plumbing",
@@ -25,7 +30,6 @@ const ClientDashboard = () => {
     icon: "🏠"
   }];
 
-  // Categorize bookings
   const bookings = [{
     id: 1,
     service: "Plumbing Repair",
@@ -60,6 +64,7 @@ const ClientDashboard = () => {
     message: "I'll be arriving in 10 minutes...",
     time: "10:30 AM"
   }];
+
   const handleServiceClick = (service: {
     name: string;
     icon: string;
@@ -70,19 +75,18 @@ const ClientDashboard = () => {
       }
     });
   };
+
   const handleChat = (booking: typeof bookings[number]) => {
-    // Go to chat with handyman for this booking
     navigate(`/client/chat/${booking.id}`, { state: { booking } });
   };
 
-  // Group bookings by status
   const categorized = {
     upcoming: bookings.filter(b => b.status === "upcoming"),
     pending: bookings.filter(b => b.status === "pending"),
     completed: bookings.filter(b => b.status === "completed")
   };
-  return <ClientDashboardLayout title={`Welcome back, ${user?.name?.split(' ')[0] || 'Client'}`} subtitle="What can we help you with today?">
-      {/* Search Bar */}
+
+  return <ClientDashboardLayout title={`Welcome back, ${user?.name?.split(' ')[0] || 'Client'}`} subtitle="What can we help you with today?" showHomeIcon={false}>
       <div className="mb-8 relative">
         <div className="relative">
           <input type="text" placeholder="Search Services" className="w-full md:w-96 bg-white rounded-full py-2 px-6 pr-12 shadow-sm border border-gray-200" />
@@ -90,7 +94,6 @@ const ClientDashboard = () => {
         </div>
       </div>
       
-      {/* Popular Services */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-4">Popular Services</h2>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -104,16 +107,21 @@ const ClientDashboard = () => {
         </div>
       </div>
       
-      {/* Book a Service Button */}
       <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-6 mb-8" onClick={() => navigate("/client/service-catalog")}>
         Book a Service
       </Button>
       
-      {/* Your Bookings - UPCOMING */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-4">Your Bookings</h2>
         {categorized.upcoming.length > 0 && <div className="space-y-4 mb-8">
-            {categorized.upcoming.map(booking => <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+            {categorized.upcoming.map(booking => (
+              <div key={booking.id} 
+                className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center cursor-pointer hover:shadow-md transition-shadow"
+                onClick={() => {
+                  setSelectedBooking(booking);
+                  setIsPopupOpen(true);
+                }}
+              >
                 <div className="flex items-center">
                   <div className="bg-blue-100 p-2 rounded-full mr-4">
                     <div className="text-blue-500 text-xl">🛠️</div>
@@ -127,14 +135,13 @@ const ClientDashboard = () => {
                   <div className={`px-2 py-1 rounded-full text-xs ${booking.status === 'upcoming' ? 'bg-yellow-100 text-yellow-700' : ''}`}>
                     UPCOMING
                   </div>
-                  {/* Chat Button */}
                   <Button variant="secondary" size="sm" onClick={() => handleChat(booking)} className="bg-green-600 hover:bg-green-500 rounded-2xl">
                     <MessageSquare className="mr-1" size={16} /> Chat
                   </Button>
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>}
-        {/* Your Bookings - PENDING */}
         {categorized.pending.length > 0 && <div className="space-y-4 mb-8">
             {categorized.pending.map(booking => <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
                 <div className="flex items-center">
@@ -150,14 +157,12 @@ const ClientDashboard = () => {
                   <div className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-600">
                     PENDING
                   </div>
-                  {/* Chat Button */}
                   <Button variant="secondary" size="sm" onClick={() => handleChat(booking)} className="bg-green-600 hover:bg-green-500 rounded-2xl">
                     <MessageSquare className="mr-1" size={16} /> Chat
                   </Button>
                 </div>
               </div>)}
           </div>}
-        {/* Your Bookings - COMPLETED */}
         {categorized.completed.length > 0 && <div className="space-y-4">
             {categorized.completed.map(booking => <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
                 <div className="flex items-center">
@@ -178,7 +183,6 @@ const ClientDashboard = () => {
           </div>}
       </div>
       
-      {/* Recent Messages */}
       <div>
         <h2 className="text-xl font-semibold mb-4">Recent Messages</h2>
         <div className="space-y-3">
@@ -194,6 +198,15 @@ const ClientDashboard = () => {
             </div>)}
         </div>
       </div>
+      
+      {selectedBooking && (
+        <BookingPopup
+          booking={selectedBooking}
+          open={isPopupOpen}
+          onOpenChange={setIsPopupOpen}
+        />
+      )}
     </ClientDashboardLayout>;
 };
+
 export default ClientDashboard;

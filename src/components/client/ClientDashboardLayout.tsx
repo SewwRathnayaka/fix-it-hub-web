@@ -1,4 +1,3 @@
-
 import { ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -16,6 +15,7 @@ interface ClientDashboardLayoutProps {
   children: ReactNode;
   title: string;
   subtitle?: string;
+  showHomeIcon?: boolean;
 }
 
 const notifications = [
@@ -33,7 +33,7 @@ const notifications = [
   },
 ];
 
-const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLayoutProps) => {
+const ClientDashboardLayout = ({ children, title, subtitle, showHomeIcon = true }: ClientDashboardLayoutProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -57,13 +57,10 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* Header */}
       <header className="shadow-md" style={{ background: "#14B22D" }}>
         <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
-            {/* Empty left spacer */}
             <div className="flex-1 flex items-center justify-start"></div>
-            {/* Logo centered */}
             <div className="flex-1 flex items-center justify-center">
               <Link to="/" className="flex items-center h-10">
                 <img
@@ -74,18 +71,17 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
                 />
               </Link>
             </div>
-            {/* Notifications, Home, and Profile */}
             <div className="flex-1 flex items-center justify-end space-x-3">
-              {/* Home Icon Button (navigate to home) */}
-              <button
-                className="rounded-full p-2 hover:bg-green-100 transition"
-                aria-label="Home"
-                onClick={() => navigate("/")}
-                type="button"
-              >
-                <Home className="h-6 w-6 text-white" />
-              </button>
-              {/* Notifications Dropdown */}
+              {showHomeIcon && location.pathname !== "/client/dashboard" && (
+                <button
+                  className="rounded-full p-2 hover:bg-green-100 transition"
+                  aria-label="Home"
+                  onClick={() => navigate("/client/dashboard")}
+                  type="button"
+                >
+                  <Home className="h-6 w-6 text-white" />
+                </button>
+              )}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <div className="relative cursor-pointer">
@@ -116,7 +112,6 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
                   )}
                 </DropdownMenuContent>
               </DropdownMenu>
-              {/* Profile Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <div className="bg-white rounded-full h-8 w-8 flex items-center justify-center cursor-pointer">
@@ -158,7 +153,6 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
         </div>
       </header>
 
-      {/* Main Content */}
       <div className="flex flex-1">
         <main className="flex-1 p-6 bg-gray-50">
           <div className="mb-6">
@@ -169,7 +163,6 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
         </main>
       </div>
 
-      {/* Footer with logo */}
       <div className="w-full flex justify-center p-4 bg-white border-t">
         <div className="flex items-center">
           <img
