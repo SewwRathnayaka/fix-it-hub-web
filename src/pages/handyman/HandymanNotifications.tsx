@@ -5,7 +5,7 @@ import HandymanNotificationsTabs from "@/components/handyman/HandymanNotificatio
 import HandymanNotificationCard from "@/components/handyman/HandymanNotificationCard";
 import { Button } from "@/components/ui/button";
 import { NotificationType } from "@/components/handyman/HandymanNotificationCard";
-import { Home } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 const notifications = [
   {
@@ -71,9 +71,20 @@ const HandymanNotifications = () => {
 
   return (
     <HandymanDashboardLayout 
-      title="Notifications" 
+      title="Notifications"
       homeButtonHandler={() => navigate("/handyman/dashboard")}
     >
+      <div className="flex items-center mb-4">
+        <Button
+          variant="ghost"
+          onClick={() => navigate(-1)}
+          className="gap-2"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          Back
+        </Button>
+      </div>
+      
       <div className="flex justify-between items-center">
         <HandymanNotificationsTabs value={tab} onChange={setTab} />
         <div className="flex space-x-2">

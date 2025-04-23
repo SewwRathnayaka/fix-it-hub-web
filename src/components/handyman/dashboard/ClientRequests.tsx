@@ -38,12 +38,12 @@ const ClientRequests = () => {
         ) : (
           clientRequests.map((req) => (
             <li key={req.id} className="relative flex justify-between items-center p-4">
-              <div className="absolute -top-1 -left-1 bg-[#ea384c] text-white px-3 py-1 text-xs font-bold rotate-[-45deg] origin-top-left">
+              <div className="absolute top-2 -left-1 bg-[#ea384c] text-white px-3 py-1 text-xs font-bold">
                 NEW
               </div>
-              <div>
+              <div className="mt-6">
                 <div className="font-semibold">{req.title}</div>
-                <div className="text-sm text-gray-500">{req.client} &bull; {req.address}</div>
+                <div className="text-sm text-gray-500">{req.client} • {req.address}</div>
                 <div className="text-xs text-gray-400">{req.time}</div>
                 <div className="text-xs text-green-700">{req.note}</div>
               </div>

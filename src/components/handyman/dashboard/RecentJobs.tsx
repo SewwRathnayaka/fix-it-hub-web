@@ -13,6 +13,7 @@ const RecentJobs = () => {
             <div>
               <p className="font-medium">Apr 14, 2025</p>
               <p className="text-sm text-gray-600">David Wilson • Plumbing</p>
+              <p className="text-xs text-gray-400">2.5 miles away</p>
             </div>
             <div className="text-center">
               <p className="font-medium">$120</p>
@@ -26,6 +27,7 @@ const RecentJobs = () => {
             <div>
               <p className="font-medium">Apr 12, 2025</p>
               <p className="text-sm text-gray-600">Jennifer Lee • Electrical</p>
+              <p className="text-xs text-gray-400">1.8 miles away</p>
             </div>
             <div className="text-center">
               <p className="font-medium">$250</p>
@@ -39,6 +41,7 @@ const RecentJobs = () => {
             <div>
               <p className="font-medium">Apr 10, 2025</p>
               <p className="text-sm text-gray-600">Robert Brown • Plumbing</p>
+              <p className="text-xs text-gray-400">3.2 miles away</p>
             </div>
             <div className="text-center">
               <p className="font-medium">$750</p>
@@ -52,6 +55,7 @@ const RecentJobs = () => {
             <div>
               <p className="font-medium">Apr 8, 2025</p>
               <p className="text-sm text-gray-600">Patricia Miller • Carpentry</p>
+              <p className="text-xs text-gray-400">0.5 miles away</p>
             </div>
             <div className="text-center">
               <p className="font-medium">$180</p>
@@ -65,6 +69,7 @@ const RecentJobs = () => {
             <div>
               <p className="font-medium">Apr 5, 2025</p>
               <p className="text-sm text-gray-600">Linda Garcia • Electrical</p>
+              <p className="text-xs text-gray-400">4.1 miles away</p>
             </div>
             <div className="text-center">
               <p className="font-medium">$350</p>
