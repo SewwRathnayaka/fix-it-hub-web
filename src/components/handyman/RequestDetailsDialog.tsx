@@ -25,38 +25,60 @@ interface RequestDetailsProps {
 const RequestDetailsDialog = ({ open, onOpenChange, request }: RequestDetailsProps) => {
   const navigate = useNavigate();
 
+  // Mock photos array - in a real app, these would come from the request object
+  const photos = [
+    "/lovable-uploads/dee4bc78-008e-48fe-9a6d-0a851f0e0b58.png",
+    "/lovable-uploads/f1ac4051-e1a6-4dde-a3f7-f065c2486f55.png",
+  ];
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Request Details</DialogTitle>
         </DialogHeader>
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div>
-            <h3 className="font-semibold text-lg">{request.title}</h3>
+            <h3 className="font-semibold text-2xl">{request.title}</h3>
             <p className="text-sm text-gray-500">Request ID: {request.id}</p>
           </div>
 
-          <div className="space-y-2">
-            <div>
-              <label className="text-sm font-medium text-gray-500">Client</label>
-              <p className="text-gray-900">{request.client}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-4">
+              <div>
+                <label className="text-sm font-medium text-gray-500">Client</label>
+                <p className="text-gray-900 text-lg">{request.client}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-500">Location</label>
+                <p className="text-gray-900 text-lg">{request.address}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-500">Preferred Time</label>
+                <p className="text-gray-900 text-lg">{request.time}</p>
+              </div>
+              <div>
+                <label className="text-sm font-medium text-gray-500">Additional Notes</label>
+                <p className="text-gray-900 text-lg whitespace-pre-wrap">{request.note}</p>
+              </div>
             </div>
+
             <div>
-              <label className="text-sm font-medium text-gray-500">Location</label>
-              <p className="text-gray-900">{request.address}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-500">Preferred Time</label>
-              <p className="text-gray-900">{request.time}</p>
-            </div>
-            <div>
-              <label className="text-sm font-medium text-gray-500">Additional Notes</label>
-              <p className="text-gray-900">{request.note}</p>
+              <label className="text-sm font-medium text-gray-500 block mb-3">Uploaded Photos</label>
+              <div className="grid grid-cols-2 gap-4">
+                {photos.map((photo, index) => (
+                  <img
+                    key={index}
+                    src={photo}
+                    alt={`Request photo ${index + 1}`}
+                    className="w-full h-48 object-cover rounded-lg shadow-sm"
+                  />
+                ))}
+              </div>
             </div>
           </div>
 
-          <div className="flex justify-between gap-4 pt-4">
+          <div className="flex justify-between gap-4 pt-4 border-t">
             <Button
               variant="outline"
               className="flex-1"
