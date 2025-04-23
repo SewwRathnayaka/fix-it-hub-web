@@ -1,6 +1,5 @@
-
-import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import React, { useState } from "react";
+import { Dialog, DialogContent, DialogHeader } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -13,6 +12,102 @@ interface BookingDetailsDialogProps {
 }
 
 const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps) => {
+  const [showSummary, setShowSummary] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState({
+    date: "",
+    time: "",
+    location: "",
+    message: ""
+  });
+
+  const handleContinue = () => {
+    setShowSummary(true);
+  };
+
+  const handleBack = () => {
+    setShowSummary(false);
+  };
+
+  if (showSummary) {
+    return (
+      <Dialog open={open} onOpenChange={onOpenChange}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <button 
+              onClick={handleBack}
+              className="flex items-center text-gray-600 hover:text-gray-900 mb-4"
+            >
+              <ArrowLeft className="h-5 w-5 mr-2" />
+              Booking Summary
+            </button>
+          </DialogHeader>
+
+          <div className="space-y-6">
+            <section>
+              <h3 className="font-semibold mb-4">Service Information</h3>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="font-medium">Plumbing Service</div>
+                <div className="text-gray-600 text-sm mt-1">Leaking pipe under kitchen sink</div>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="font-semibold mb-4">Professional Details</h3>
+              <div className="bg-gray-50 p-4 rounded-lg">
+                <div className="font-medium">David Miller</div>
+                <div className="text-gray-600 text-sm mt-1">Master Plumber, Emergency Services</div>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="font-semibold mb-4">Appointment Details</h3>
+              <div className="space-y-4">
+                <div className="flex items-start gap-4">
+                  <Calendar className="h-5 w-5 text-gray-400 mt-1" />
+                  <div>
+                    <div className="text-sm text-gray-500">Date</div>
+                    <div>January 24, 2024</div>
+                  </div>
+                  <div className="ml-8">
+                    <Clock className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <div>
+                    <div className="text-sm text-gray-500">Time</div>
+                    <div>10:00 AM</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-4">
+                  <MapPin className="h-5 w-5 text-gray-400 mt-1" />
+                  <div>
+                    <div className="text-sm text-gray-500">Location</div>
+                    <div>123 Main Street, Apt 4B, New York, NY 10001</div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <h3 className="font-semibold mb-4">Message to Professional</h3>
+              <Textarea 
+                placeholder="Add any additional details or special requests for the professional..."
+                className="min-h-[100px]"
+              />
+            </section>
+
+            <div className="flex justify-end space-x-4 pt-4">
+              <Button variant="outline" onClick={handleBack}>
+                Back
+              </Button>
+              <Button className="bg-orange-500 hover:bg-orange-600">
+                Send Request
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    );
+  }
+
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl">
@@ -85,7 +180,7 @@ const BookingDetailsDialog = ({ open, onOpenChange }: BookingDetailsDialogProps)
             <Button variant="outline" onClick={() => onOpenChange(false)}>
               Cancel
             </Button>
-            <Button className="bg-orange-500 hover:bg-orange-600">
+            <Button className="bg-orange-500 hover:bg-orange-600" onClick={handleContinue}>
               Continue to Review
             </Button>
           </div>
