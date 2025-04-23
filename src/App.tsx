@@ -31,6 +31,7 @@ import HandymanAccount from "./pages/handyman/HandymanAccount";
 import HandymanBilling from "./pages/handyman/HandymanBilling";
 import CompleteProfile from "./pages/CompleteProfile";
 import ServiceDetails from "./pages/client/ServiceDetails";
+import SelectProfessional from "./pages/client/SelectProfessional";
 
 const queryClient = new QueryClient();
 
@@ -68,6 +69,7 @@ const App = () => (
           <Route path="/handyman/notifications" element={<HandymanNotifications />} />
           <Route path="/handyman/account" element={<HandymanAccount />} />
           <Route path="/handyman/billing" element={<HandymanBilling />} />
+          <Route path="/client/select-professional" element={<SelectProfessional />} />
 
           <Route path="*" element={<NotFound />} />
         </Routes>
