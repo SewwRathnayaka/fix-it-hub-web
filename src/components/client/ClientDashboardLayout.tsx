@@ -55,11 +55,6 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
     navigate("/");
   };
 
-  const handleNotificationClick = (notificationId: number) => {
-    // You can add specific logic for handling notification clicks
-    console.log(`Notification ${notificationId} clicked`);
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -95,7 +90,7 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
                 <DropdownMenuTrigger asChild>
                   <div className="relative cursor-pointer">
                     <Bell className="h-6 w-6 text-white" />
-                    <span className="absolute -top-1 -right-1 bg-green-200 text-green-800 text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                    <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                       {notifications.length}
                     </span>
                   </div>
@@ -112,7 +107,6 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
                       <DropdownMenuItem
                         key={n.id}
                         className="whitespace-normal flex flex-col items-start py-2"
-                        onClick={() => handleNotificationClick(n.id)}
                       >
                         <span className="font-medium">{n.title}</span>
                         <span className="text-xs text-gray-500 mb-1">{n.description}</span>
