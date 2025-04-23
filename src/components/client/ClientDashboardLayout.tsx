@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
-import { Bell, User } from "lucide-react";
+import { Bell, User, Home } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -59,8 +59,17 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
                 />
               </Link>
             </div>
-            {/* Notifications and Profile */}
+            {/* Notifications, Home, and Profile */}
             <div className="flex-1 flex items-center justify-end space-x-3">
+              {/* Home Icon Button (navigate to home) */}
+              <button
+                className="rounded-full p-2 hover:bg-green-100 transition"
+                aria-label="Home"
+                onClick={() => navigate("/")}
+                type="button"
+              >
+                <Home className="h-6 w-6 text-white" />
+              </button>
               <div className="relative">
                 <Bell className="h-6 w-6 text-white cursor-pointer" />
                 <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
@@ -72,6 +81,11 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
                   </div>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuItem
+                    onClick={() => navigate("/client/dashboard")}
+                  >
+                    Dashboard
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => navigate("/client/profile")}>
                     Basic Info
                   </DropdownMenuItem>
@@ -128,3 +142,4 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
 };
 
 export default ClientDashboardLayout;
+
