@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HandymanDashboardLayout from "@/components/handyman/HandymanDashboardLayout";
+import RequestDetailsDialog from "@/components/handyman/RequestDetailsDialog";
 import {
   Tabs,
   TabsList,
@@ -58,6 +59,7 @@ const todaysSchedule = [
 const HandymanDashboard = () => {
   const navigate = useNavigate();
   const [tab, setTab] = useState<"requests" | "today">("requests");
+  const [selectedRequest, setSelectedRequest] = useState<typeof clientRequests[0] | null>(null);
 
   useEffect(() => {
     if (!localStorage.getItem("fixfinder_handyman_registered")) {
@@ -117,7 +119,10 @@ const HandymanDashboard = () => {
                       <div className="text-xs text-gray-400">{req.time}</div>
                       <div className="text-xs text-green-700">{req.note}</div>
                     </div>
-                    <button className="bg-green-50 text-green-700 px-4 py-1 rounded hover:bg-green-100 text-sm">
+                    <button
+                      onClick={() => setSelectedRequest(req)}
+                      className="bg-green-50 text-green-700 px-4 py-1 rounded hover:bg-green-100 text-sm"
+                    >
                       View Details
                     </button>
                   </li>
@@ -127,7 +132,6 @@ const HandymanDashboard = () => {
           </div>
         </TabsContent>
         <TabsContent value="today">
-          {/* Copied/Kept existing Today's Schedule section */}
           <div className="bg-white rounded-lg shadow mt-4">
             <div className="p-4 border-b">
               <h2 className="font-semibold">Today's Schedule</h2>
@@ -215,6 +219,14 @@ const HandymanDashboard = () => {
           </tbody>
         </table>
       </div>
+
+      {selectedRequest && (
+        <RequestDetailsDialog
+          open={!!selectedRequest}
+          onOpenChange={(open) => !open && setSelectedRequest(null)}
+          request={selectedRequest}
+        />
+      )}
     </HandymanDashboardLayout>
   );
 };
