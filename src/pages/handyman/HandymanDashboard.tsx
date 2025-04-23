@@ -1,7 +1,17 @@
 
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import HandymanDashboardLayout from "@/components/handyman/HandymanDashboardLayout";
 
 const HandymanDashboard = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!localStorage.getItem("fixfinder_handyman_registered")) {
+      navigate("/handyman/registration");
+    }
+  }, [navigate]);
+
   return (
     <HandymanDashboardLayout title="Dashboard">
       {/* You can add the dashboard cards and layout here, matching the UI in your design */}
