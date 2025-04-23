@@ -1,3 +1,4 @@
+
 import {
   Dialog,
   DialogContent,
@@ -78,18 +79,24 @@ const RequestDetailsDialog = ({ open, onOpenChange, request }: RequestDetailsPro
 
           <div className="flex justify-between gap-4 pt-4 border-t">
             <Button
-              variant="outline"
+              variant="destructive"
               className="flex-1"
               onClick={() => onOpenChange(false)}
             >
-              Close
+              Reject
             </Button>
             <Button
+              variant="outline"
               className="flex-1 gap-2"
               onClick={() => navigate(`/handyman/chat/${request.id}`)}
             >
               <MessageSquare className="h-4 w-4" />
               Chat with Client
+            </Button>
+            <Button
+              className="flex-1"
+            >
+              Accept
             </Button>
           </div>
         </div>

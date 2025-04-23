@@ -30,15 +30,17 @@ const ClientRequests = () => {
         <h2 className="font-semibold">Client Requests</h2>
       </div>
       <div className="p-4 bg-red-50 border-b border-red-100">
-        <span className="text-red-600 font-semibold text-sm">NEW</span>
-        <p className="text-red-600 text-sm mt-1">Please review and accept client's requests</p>
+        <p className="text-red-600 text-sm">Please review and accept</p>
       </div>
       <ul className="divide-y">
         {clientRequests.length === 0 ? (
           <li className="py-6 text-center text-gray-500">No new client requests.</li>
         ) : (
           clientRequests.map((req) => (
-            <li key={req.id} className="flex justify-between items-center p-4">
+            <li key={req.id} className="relative flex justify-between items-center p-4">
+              <div className="absolute -top-1 -left-1 bg-[#ea384c] text-white px-3 py-1 text-xs font-bold rotate-[-45deg] origin-top-left">
+                NEW
+              </div>
               <div>
                 <div className="font-semibold">{req.title}</div>
                 <div className="text-sm text-gray-500">{req.client} &bull; {req.address}</div>

@@ -33,7 +33,6 @@ const menuItems = [
   { label: "Clients", route: "/handyman/clients" },
   { label: "Settings", route: "/handyman/settings" },
   { label: "Profile", route: "/handyman/profile" },
-  { label: "Notifications", route: "/handyman/notifications" },
   { label: "Account", route: "/handyman/account" },
   { label: "Billing", route: "/handyman/billing" },
 ];
@@ -48,7 +47,7 @@ const HandymanDashboardLayout = ({
   const location = useLocation();
   const isOnDashboard = location.pathname === "/handyman/dashboard";
 
-  const handleHomeClick = homeButtonHandler || (() => navigate("/"));
+  const handleHomeClick = homeButtonHandler || (() => navigate("/handyman/dashboard"));
 
   return (
     <div className="min-h-screen flex w-full bg-[#f5faf7]">
@@ -122,6 +121,13 @@ const HandymanDashboardLayout = ({
           {subtitle && <p className="text-gray-700">{subtitle}</p>}
         </div>
         <div className="flex-1 px-10 pb-8">{children}</div>
+        <footer className="w-full px-10 py-4 border-t bg-white shadow-sm">
+          <img
+            src="/lovable-uploads/f8b0003c-8de6-4035-b677-59817d3a83cf.png"
+            alt="FixFinder Logo"
+            className="h-6 object-contain mx-auto"
+          />
+        </footer>
       </main>
     </div>
   );
