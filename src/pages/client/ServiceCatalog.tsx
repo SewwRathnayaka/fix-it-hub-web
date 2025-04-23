@@ -1,8 +1,9 @@
 
 import { useState, useMemo } from "react";
 import { Input } from "@/components/ui/input";
-import { Search } from "lucide-react";
+import { Search, ArrowLeft } from "lucide-react";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
+import { useNavigate } from "react-router-dom";
 
 const ALL_SERVICES = [
   { name: "Appliance Repair", icon: "🧯" },
@@ -16,11 +17,11 @@ const ALL_SERVICES = [
   { name: "Plumbing", icon: "🔧" },
   { name: "Roofing", icon: "🏘️" },
   { name: "Window Cleaning", icon: "🪟" }
-  // Add more services if needed
 ];
 
 const ServiceCatalog = () => {
   const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   // Alphabetical sort and filter based on search
   const filteredServices = useMemo(() => {
@@ -35,6 +36,15 @@ const ServiceCatalog = () => {
   return (
     <ClientDashboardLayout title="Service Catalog" subtitle="Browse and book your desired service">
       <div className="max-w-2xl mx-auto">
+        {/* Back Button */}
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center text-gray-600 hover:text-gray-900 mb-4"
+        >
+          <ArrowLeft className="h-5 w-5 mr-2" />
+          Back
+        </button>
+
         {/* Search Bar */}
         <div className="relative mb-8">
           <Input
@@ -52,6 +62,7 @@ const ServiceCatalog = () => {
             <div
               key={service.name}
               className="flex flex-col items-center gap-2 bg-white rounded-lg shadow p-5 hover:shadow-md transition-shadow cursor-pointer"
+              onClick={() => navigate("/client/service-details", { state: { service } })}
             >
               <span className="text-3xl">{service.icon}</span>
               <span className="font-semibold text-gray-800 text-center">{service.name}</span>

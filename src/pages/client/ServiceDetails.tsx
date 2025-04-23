@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
@@ -38,7 +39,18 @@ const ServiceDetails = () => {
   };
 
   if (!service) {
-    return null;
+    return (
+      <ClientDashboardLayout title="Service Details" subtitle="">
+        <div className="max-w-4xl mx-auto text-center text-gray-600 py-16">
+          No service selected. Please return to the service catalog.
+          <div className="mt-4">
+            <Button variant="outline" onClick={() => navigate("/client/service-catalog")}>
+              Back to Service Catalog
+            </Button>
+          </div>
+        </div>
+      </ClientDashboardLayout>
+    );
   }
 
   return (
@@ -49,7 +61,7 @@ const ServiceDetails = () => {
           className="flex items-center text-gray-600 hover:text-gray-900 mb-6"
         >
           <ArrowLeft className="h-5 w-5 mr-2" />
-          Back to Dashboard
+          Back to Service Catalog
         </button>
 
         <div className="bg-green-500 text-white p-6 rounded-lg mb-6">
