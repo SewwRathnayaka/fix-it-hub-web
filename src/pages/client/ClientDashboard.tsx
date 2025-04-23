@@ -1,6 +1,7 @@
+
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Search } from "lucide-react";
+import { Search, MessageSquare } from "lucide-react";
 import ClientDashboardLayout from "@/components/client/ClientDashboardLayout";
 
 const ClientDashboard = () => {
@@ -14,7 +15,8 @@ const ClientDashboard = () => {
     { id: 3, name: "Painting", icon: "🖌️" },
     { id: 4, name: "Home Repair", icon: "🏠" },
   ];
-  
+
+  // Categorize bookings
   const bookings = [
     { 
       id: 1, 
@@ -31,7 +33,7 @@ const ClientDashboard = () => {
       handyman: "Mike Johnson", 
       date: "Jan 25", 
       time: "10:00 AM", 
-      status: "upcoming", 
+      status: "pending", 
       price: "$95.00" 
     },
     { 
@@ -56,6 +58,18 @@ const ClientDashboard = () => {
 
   const handleServiceClick = (service: { name: string; icon: string }) => {
     navigate('/client/service-details', { state: { service } });
+  };
+
+  const handleChat = (booking: typeof bookings[number]) => {
+    // Placeholder: you can add chat navigation here
+    alert(`Chat with ${booking.handyman} coming soon!`);
+  };
+
+  // Group bookings by status
+  const categorized = {
+    upcoming: bookings.filter(b => b.status === "upcoming"),
+    pending: bookings.filter(b => b.status === "pending"),
+    completed: bookings.filter(b => b.status === "completed")
   };
 
   return (
@@ -97,33 +111,87 @@ const ClientDashboard = () => {
         Book a Service
       </Button>
       
-      {/* Your Bookings */}
+      {/* Your Bookings - UPCOMING */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold mb-4">Your Bookings</h2>
-        <div className="space-y-4">
-          {bookings.map(booking => (
-            <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
-              <div className="flex items-center">
-                <div className="bg-blue-100 p-2 rounded-full mr-4">
-                  <div className="text-blue-500 text-xl">🛠️</div>
+        {categorized.upcoming.length > 0 && (
+          <div className="space-y-4 mb-8">
+            {categorized.upcoming.map(booking => (
+              <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                <div className="flex items-center">
+                  <div className="bg-blue-100 p-2 rounded-full mr-4">
+                    <div className="text-blue-500 text-xl">🛠️</div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium">{booking.service}</h3>
+                    <p className="text-gray-500 text-sm">{booking.handyman} • {booking.date}, {booking.time}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-medium">{booking.service}</h3>
-                  <p className="text-gray-500 text-sm">{booking.handyman} • {booking.date}, {booking.time}</p>
+                <div className="flex items-center space-x-2">
+                  <div className={`px-2 py-1 rounded-full text-xs ${
+                    booking.status === 'upcoming' 
+                      ? 'bg-yellow-100 text-yellow-700' 
+                      : ''
+                  }`}>
+                    UPCOMING
+                  </div>
+                  <Button variant="secondary" size="sm" onClick={() => handleChat(booking)}>
+                    <MessageSquare className="mr-1" size={16} /> Chat with Handyman
+                  </Button>
                 </div>
               </div>
-              <div className="flex items-center">
-                <div className={`px-2 py-1 rounded-full text-xs mr-4 ${
-                  booking.status === 'upcoming' 
-                    ? 'bg-yellow-100 text-yellow-700' 
-                    : 'bg-green-100 text-green-700'
-                }`}>
-                  {booking.status === 'upcoming' ? 'UPCOMING' : 'COMPLETED'}
+            ))}
+          </div>
+        )}
+        {/* Your Bookings - PENDING */}
+        {categorized.pending.length > 0 && (
+          <div className="space-y-4 mb-8">
+            {categorized.pending.map(booking => (
+              <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                <div className="flex items-center">
+                  <div className="bg-blue-100 p-2 rounded-full mr-4">
+                    <div className="text-blue-500 text-xl">🛠️</div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium">{booking.service}</h3>
+                    <p className="text-gray-500 text-sm">{booking.handyman} • {booking.date}, {booking.time}</p>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-600">
+                    PENDING
+                  </div>
+                  <Button variant="secondary" size="sm" onClick={() => handleChat(booking)}>
+                    <MessageSquare className="mr-1" size={16} /> Chat with Handyman
+                  </Button>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+        {/* Your Bookings - COMPLETED */}
+        {categorized.completed.length > 0 && (
+          <div className="space-y-4">
+            {categorized.completed.map(booking => (
+              <div key={booking.id} className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
+                <div className="flex items-center">
+                  <div className="bg-blue-100 p-2 rounded-full mr-4">
+                    <div className="text-blue-500 text-xl">🛠️</div>
+                  </div>
+                  <div>
+                    <h3 className="font-medium">{booking.service}</h3>
+                    <p className="text-gray-500 text-sm">{booking.handyman} • {booking.date}, {booking.time}</p>
+                  </div>
+                </div>
+                <div className="flex items-center">
+                  <div className="px-2 py-1 rounded-full text-xs bg-green-100 text-green-700">
+                    COMPLETED
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       
       {/* Recent Messages */}
@@ -149,3 +217,4 @@ const ClientDashboard = () => {
 };
 
 export default ClientDashboard;
+
