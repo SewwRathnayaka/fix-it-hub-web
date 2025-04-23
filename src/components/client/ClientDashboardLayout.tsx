@@ -18,19 +18,34 @@ interface ClientDashboardLayoutProps {
   subtitle?: string;
 }
 
+const notifications = [
+  {
+    id: 1,
+    title: "Job Confirmed",
+    description: "Your booking for Plumbing Repair is confirmed.",
+    time: "5 mins ago",
+  },
+  {
+    id: 2,
+    title: "Upcoming Booking",
+    description: "You have a booking with Abraham Garcia tomorrow.",
+    time: "1 hour ago",
+  },
+];
+
 const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLayoutProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   const { toast } = useToast();
-  
+
   const userString = localStorage.getItem("fixfinder_user");
   const user = userString ? JSON.parse(userString) : null;
-  
+
   if (!user) {
     navigate("/login/client");
     return null;
   }
-  
+
   const handleLogout = () => {
     localStorage.removeItem("fixfinder_user");
     toast({
@@ -70,10 +85,38 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
               >
                 <Home className="h-6 w-6 text-white" />
               </button>
-              <div className="relative">
-                <Bell className="h-6 w-6 text-white cursor-pointer" />
-                <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">2</span>
-              </div>
+              {/* Notifications Dropdown */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <div className="relative cursor-pointer">
+                    <Bell className="h-6 w-6 text-white" />
+                    <span className="absolute -top-1 -right-1 bg-orange-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                      {notifications.length}
+                    </span>
+                  </div>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-72">
+                  <div className="p-2 font-semibold text-gray-700">Notifications</div>
+                  <DropdownMenuSeparator />
+                  {notifications.length === 0 ? (
+                    <DropdownMenuItem className="pointer-events-none text-gray-400">
+                      No notifications
+                    </DropdownMenuItem>
+                  ) : (
+                    notifications.map((n) => (
+                      <DropdownMenuItem
+                        key={n.id}
+                        className="whitespace-normal flex flex-col items-start py-2"
+                      >
+                        <span className="font-medium">{n.title}</span>
+                        <span className="text-xs text-gray-500 mb-1">{n.description}</span>
+                        <span className="text-xs text-gray-400">{n.time}</span>
+                      </DropdownMenuItem>
+                    ))
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
+              {/* Profile Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <div className="bg-white rounded-full h-8 w-8 flex items-center justify-center cursor-pointer">
@@ -114,7 +157,7 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
           </div>
         </div>
       </header>
-      
+
       {/* Main Content */}
       <div className="flex flex-1">
         <main className="flex-1 p-6 bg-gray-50">
@@ -125,7 +168,7 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
           {children}
         </main>
       </div>
-      
+
       {/* Footer with logo */}
       <div className="w-full flex justify-center p-4 bg-white border-t">
         <div className="flex items-center">
@@ -142,4 +185,3 @@ const ClientDashboardLayout = ({ children, title, subtitle }: ClientDashboardLay
 };
 
 export default ClientDashboardLayout;
-
