@@ -37,7 +37,7 @@ const SelectRole = () => {
             className="w-full bg-green-600 hover:bg-green-700 text-white flex items-center justify-center gap-3"
             size="lg"
             onClick={() =>
-              navigate(action === "signup" ? "/client/complete-profile" : "/login/client")
+              navigate(action === "signup" ? "/signup/client" : "/login/client")
             }
           >
             <User />
@@ -58,5 +58,4 @@ const SelectRole = () => {
     </div>
   );
 };
-
 export default SelectRole;
