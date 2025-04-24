@@ -12,7 +12,7 @@ const CompleteProfile = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    navigate('/client/dashboard');
+    navigate('/signup/client');
   };
 
   return (
