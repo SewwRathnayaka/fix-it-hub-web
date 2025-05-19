@@ -4,7 +4,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#14B22D] text-white">
+    <footer className="bg-[#33C3F0] text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
@@ -41,7 +41,7 @@ const Footer = () => {
                 <Link to="/" className="hover:underline">Home</Link>
               </li>
               <li>
-                <Link to="/about" className="hover:underline">About Us</Link>
+                <Link to="/about" className="hover:underline">About</Link>
               </li>
               <li>
                 <Link to="/services" className="hover:underline">Services</Link>
@@ -100,7 +100,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-green-400 mt-8 pt-8 text-center">
+        <div className="border-t border-blue-400 mt-8 pt-8 text-center">
           <div className="flex justify-center mb-3">
             {/* LOGO IMAGE HOLDER */}
             <img
@@ -118,4 +118,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

@@ -1,3 +1,4 @@
+
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -36,13 +37,13 @@ const ServiceCard = ({ title, description, icon, image, onClick }: ServiceCardPr
       </div>
       <div className="p-6">
         <div className="flex items-center mb-4">
-          <div className="bg-green-100 p-2 rounded-full mr-3">
+          <div className="bg-blue-100 p-2 rounded-full mr-3">
             {icon}
           </div>
           <h3 className="text-lg font-semibold">{title}</h3>
         </div>
         <p className="text-gray-600 mb-2">{description}</p>
-        <div className="flex items-center gap-2 text-green-700 text-sm font-medium">
+        <div className="flex items-center gap-2 text-[#33C3F0] text-sm font-medium">
           <ArrowRight className="h-4 w-4" />
           Click to see more details
         </div>
@@ -60,37 +61,37 @@ const SERVICES: {
   {
     title: "Plumbing",
     description: "Expert plumbing services for leak repairs, pipe installations, toilet repairs, and more.",
-    icon: <Droplet className="h-5 w-5 text-green-500" />,
+    icon: <Droplet className="h-5 w-5 text-[#33C3F0]" />,
     image: "public/lovable-uploads/a6fd3ec1-585e-4685-bc74-26d201fb00b6.png"
   },
   {
     title: "Electrical",
     description: "Professional electrical services for installations, repairs, wiring, switches, and outlets.",
-    icon: <Lightbulb className="h-5 w-5 text-green-500" />,
+    icon: <Lightbulb className="h-5 w-5 text-[#33C3F0]" />,
     image: "public/lovable-uploads/d90e9dea-d454-4da2-a4ee-b5190ec3cb0e.png"
   },
   {
     title: "Carpentry",
     description: "Skilled carpentry for furniture assembly, custom builds, repairs, and woodworking projects.",
-    icon: <Wrench className="h-5 w-5 text-green-500" />,
+    icon: <Wrench className="h-5 w-5 text-[#33C3F0]" />,
     image: "public/lovable-uploads/3605cbc1-3484-439e-9e60-44ecd68d164e.png"
   },
   {
     title: "Painting",
     description: "Quality painting services for interior and exterior walls, trim, doors, and decorative finishes.",
-    icon: <PaintBucket className="h-5 w-5 text-green-500" />,
+    icon: <PaintBucket className="h-5 w-5 text-[#33C3F0]" />,
     image: "public/lovable-uploads/404a883c-6523-4403-a00f-272976243f6f.png"
   },
   {
     title: "Home Repairs",
     description: "General home repairs including drywall patching, door adjustments, and hardware installation.",
-    icon: <Home className="h-5 w-5 text-green-500" />,
+    icon: <Home className="h-5 w-5 text-[#33C3F0]" />,
     image: "public/lovable-uploads/f1ac4051-e1a6-4dde-a3f7-f065c2486f55.png" 
   },
   {
     title: "Renovations",
     description: "Small to medium renovation projects for kitchens, bathrooms, basements, and other spaces.",
-    icon: <HardHat className="h-5 w-5 text-green-500" />,
+    icon: <HardHat className="h-5 w-5 text-[#33C3F0]" />,
     image: "public/lovable-uploads/c9966b20-1738-4ad6-8ec2-cced8d1e3122.png"
   }
 ];
@@ -144,14 +145,14 @@ const Services = () => {
           </div>
         </div>
         
-        <div className="py-16 bg-green-500">
+        <div className="py-16 bg-[#33C3F0]">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-white mb-4">Need a Custom Service?</h2>
-            <p className="text-xl text-green-100 mb-8 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
               Don't see what you're looking for? We offer many more specialized services and can customize solutions for your specific needs.
             </p>
             <a href="/contact">
-              <Button size="lg" className="bg-white text-green-600 hover:bg-green-100">
+              <Button size="lg" className="bg-white text-[#33C3F0] hover:bg-blue-100">
                 Contact Us for Custom Services
               </Button>
             </a>

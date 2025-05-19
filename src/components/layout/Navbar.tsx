@@ -5,7 +5,7 @@ import { Wrench } from "lucide-react";
 
 const Navbar = () => {
   return (
-    <nav className="bg-[#14B22D] shadow-md">
+    <nav className="bg-[#33C3F0] shadow-md">
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
@@ -21,23 +21,23 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-white hover:text-green-100 font-medium">
+            <Link to="/" className="text-white hover:text-blue-100 font-medium">
               Home
             </Link>
-            <Link to="/about" className="text-white hover:text-green-100 font-medium">
+            <Link to="/about" className="text-white hover:text-blue-100 font-medium">
               About Us
             </Link>
-            <Link to="/services" className="text-white hover:text-green-100 font-medium">
+            <Link to="/services" className="text-white hover:text-blue-100 font-medium">
               Services
             </Link>
-            <Link to="/contact" className="text-white hover:text-green-100 font-medium">
+            <Link to="/contact" className="text-white hover:text-blue-100 font-medium">
               Contact Us
             </Link>
           </div>
 
           <div className="flex items-center space-x-3">
             <Link to="/select-role?action=login">
-              <Button variant="outline" className="bg-white text-green-600 hover:bg-green-100">
+              <Button variant="outline" className="bg-white text-[#33C3F0] hover:bg-blue-100">
                 Login
               </Button>
             </Link>

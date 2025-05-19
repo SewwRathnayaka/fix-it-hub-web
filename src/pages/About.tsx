@@ -7,10 +7,10 @@ const About = () => {
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-grow">
-        <div className="bg-green-500 py-16">
+        <div className="bg-[#33C3F0] py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl font-bold text-white mb-4">About FixFinder</h1>
-            <p className="text-xl text-green-100 max-w-3xl mx-auto">
+            <p className="text-xl text-blue-100 max-w-3xl mx-auto">
               Your trusted platform for connecting with skilled handymen for all your home maintenance needs
             </p>
           </div>
@@ -47,7 +47,7 @@ const About = () => {
             <h2 className="text-3xl font-bold text-center text-gray-800 mb-12">Our Mission</h2>
             <div className="flex flex-col md:flex-row gap-8">
               <div className="bg-white p-8 rounded-lg shadow-md flex-1">
-                <h3 className="text-xl font-bold text-green-500 mb-4">For Customers</h3>
+                <h3 className="text-xl font-bold text-[#33C3F0] mb-4">For Customers</h3>
                 <p className="text-gray-600">
                   We aim to provide a hassle-free experience for finding reliable handymen, ensuring your home maintenance and repair needs are met with quality service, fair pricing, and professional conduct.
                 </p>
@@ -68,13 +68,13 @@ const About = () => {
           </div>
         </div>
         
-        <div className="py-16 bg-green-500">
+        <div className="py-16 bg-[#33C3F0]">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold text-white mb-8">Ready to Experience FixFinder?</h2>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <a 
                 href="/services" 
-                className="bg-white text-green-500 hover:bg-green-100 px-8 py-3 rounded-md font-medium"
+                className="bg-white text-[#33C3F0] hover:bg-blue-100 px-8 py-3 rounded-md font-medium"
               >
                 Browse Services
               </a>
