@@ -1,4 +1,3 @@
-
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { Button } from "@/components/ui/button";
@@ -120,7 +119,7 @@ const Services = () => {
           />
           <div className="relative z-10 container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              EXPLORE OUR WIDE RANGE OF SERVICES
+              FIND OUR WIDE RANGE OF SERVICES
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
               Whatever your home maintenance or repair needs, our team of skilled handymen are ready to help
@@ -175,4 +174,3 @@ const Services = () => {
 };
 
 export default Services;
-
